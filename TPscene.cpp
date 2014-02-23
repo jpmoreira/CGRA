@@ -8,6 +8,10 @@ float pi = acos(-1.0);
 float deg2rad=pi/180.0;
 
 #include "CGFappearance.h"
+#include "myFloor.h"
+
+
+#define floor_thickness 0.1
 
 CGFappearance *mat1;
 
@@ -28,7 +32,8 @@ void TPscene::init()
 	// Defines a default normal
 	glNormal3f(0,0,1);
     this->obj=ExampleObject();
-    this->cube=myUnitCube();
+    this->table=myTable();
+    this->floor=new myFloor(8,6,floor_thickness);
 
 }
 
@@ -50,7 +55,11 @@ void TPscene::display()
 	// Draw axis
 	axis.draw();
 
-    cube.draw();
+    glPushMatrix();
+    glTranslated(0.0,floor_thickness/2.0, 0.0);
+    table.draw();
+    glPopMatrix();
+    floor->draw();
 	glutSwapBuffers();
 }
 

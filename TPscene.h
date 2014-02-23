@@ -3,12 +3,16 @@
 
 #include "CGFscene.h"
 #include "ExampleObject.h"
-#include "myUnitCube.h"
+#include "myTable.h"
+
+
+class myFloor;
 
 class TPscene : public CGFscene
 {
     ExampleObject obj;
-    myUnitCube cube;
+    myTable table;
+    myFloor* floor;
     
 public:
 	void init();
