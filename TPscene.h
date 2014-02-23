@@ -7,12 +7,14 @@
 
 
 class myFloor;
+class myChair;
 
 class TPscene : public CGFscene
 {
     ExampleObject obj;
     myTable table;
     myFloor* floor;
+    myChair* chair;
     
 public:
 	void init();
@@ -20,6 +22,7 @@ public:
     
 private:
     void drawSimpleScene();
+    void drawTableAndChairWithOffset(double x,double z);
 };
 
 #endif

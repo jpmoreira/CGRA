@@ -9,9 +9,15 @@ float deg2rad=pi/180.0;
 
 #include "CGFappearance.h"
 #include "myFloor.h"
+#include "myChair.h"
 
 
 #define floor_thickness 0.1
+#define floor_single_table_width 8
+#define floor_single_table_depth 6
+
+#define nrRows 5
+#define nrCollumns 4
 
 CGFappearance *mat1;
 
@@ -33,7 +39,8 @@ void TPscene::init()
 	glNormal3f(0,0,1);
     this->obj=ExampleObject();
     this->table=myTable();
-    this->floor=new myFloor(8,6,floor_thickness);
+    this->floor=new myFloor(nrCollumns*floor_single_table_width,nrRows*floor_single_table_depth,floor_thickness);
+    this->chair=new myChair(30.0);
 
 }
 
@@ -54,13 +61,28 @@ void TPscene::display()
 
 	// Draw axis
 	axis.draw();
-
+    
     glPushMatrix();
-    glTranslated(0.0,floor_thickness/2.0, 0.0);
-    table.draw();
+    
+    glTranslated(4, 0, 3);
+    
+    for (int i=0; i<nrRows*nrCollumns; i++) {
+        
+        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth);
+    }
+
+    
     glPopMatrix();
+    
+    
+    glPushMatrix();
+    glTranslated(nrCollumns*floor_single_table_width/2.0, 0, nrRows*floor_single_table_depth/2.0);
     floor->draw();
-	glutSwapBuffers();
+    glPopMatrix();
+
+    
+ glutSwapBuffers();
+
 }
 
 
@@ -95,5 +117,27 @@ void TPscene::drawSimpleScene(){
     
     obj.draw();
 
+
+}
+
+
+void TPscene::drawTableAndChairWithOffset(double x,double z){
+    
+    
+    glPushMatrix();
+    glTranslated(x, 0, z);
+    
+    glPushMatrix();
+    glTranslated(0.0,floor_thickness/2.0, 0.0);
+    table.draw();
+    glPushMatrix();
+    
+        glTranslated(0, 0, -2.0);
+        chair->draw();
+    
+    glPopMatrix();
+    
+    glPopMatrix();
+    glPopMatrix();
 
 }
