@@ -18,11 +18,21 @@ float deg2rad=pi/180.0;
 
 #define nrRows 5
 #define nrCollumns 4
-
 CGFappearance *mat1;
 
 void TPscene::init() 
 {
+    
+    
+    chairs=vector<myChair *>();
+    tables=vector<myTable *>();
+    
+    
+    for (int i=0; i<nrRows*nrCollumns; i++) {
+        chairs.push_back(new myChair());
+        tables.push_back(new myTable());
+    }
+    
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
 
@@ -38,9 +48,7 @@ void TPscene::init()
 	// Defines a default normal
 	glNormal3f(0,0,1);
     this->obj=ExampleObject();
-    this->table=myTable();
     this->floor=new myFloor(nrCollumns*floor_single_table_width,nrRows*floor_single_table_depth,floor_thickness);
-    this->chair=new myChair(30.0);
 
 }
 
@@ -68,7 +76,7 @@ void TPscene::display()
     
     for (int i=0; i<nrRows*nrCollumns; i++) {
         
-        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth);
+        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth,tables[i],chairs[i]);
     }
 
     
@@ -121,7 +129,7 @@ void TPscene::drawSimpleScene(){
 }
 
 
-void TPscene::drawTableAndChairWithOffset(double x,double z){
+void TPscene::drawTableAndChairWithOffset(double x,double z,myTable *table,myChair *chair){
     
     
     glPushMatrix();
@@ -129,11 +137,11 @@ void TPscene::drawTableAndChairWithOffset(double x,double z){
     
     glPushMatrix();
     glTranslated(0.0,floor_thickness/2.0, 0.0);
-    table.draw();
+    table->draw();
     glPushMatrix();
     
-        glTranslated(0, 0, -2.0);
-        chair->draw();
+    glTranslated(0, 0, -2.0);
+    chair->draw();
     
     glPopMatrix();
     

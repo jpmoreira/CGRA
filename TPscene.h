@@ -12,9 +12,11 @@ class myChair;
 class TPscene : public CGFscene
 {
     ExampleObject obj;
-    myTable table;
+
+    
+    vector<myChair *> chairs;
+    vector<myTable *> tables;
     myFloor* floor;
-    myChair* chair;
     
 public:
 	void init();
@@ -22,7 +24,7 @@ public:
     
 private:
     void drawSimpleScene();
-    void drawTableAndChairWithOffset(double x,double z);
+    void drawTableAndChairWithOffset(double x,double z,myTable *table,myChair *chair);
 };
 
 #endif
