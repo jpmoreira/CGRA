@@ -28,6 +28,7 @@ void TPscene::init()
 	// Defines a default normal
 	glNormal3f(0,0,1);
     this->obj=ExampleObject();
+    this->cube=myUnitCube();
 
 }
 
@@ -49,56 +50,25 @@ void TPscene::display()
 	// Draw axis
 	axis.draw();
 
-	// ---- END Background, camera and axis setup
-/*
-
-	// ---- BEGIN Geometric transformation section
-
-	// NOTE: OpenGL transformation matrices are transposed
-
-	// Translate (5, 0, 2)
-	
-	float tra[16] = { 1.0, 0.0, 0.0, 0.0,
-                      0.0, 1.0, 0.0, 0.0,
-                      0.0, 0.0, 1.0, 0.0,
-                      5.0, 0.0, 2.0, 1.0};
-
-	// Rotate 30 degrees around Y
-	// These constants would normally be pre-computed at initialization time
-	// they are placed here just to simplify the exampl
-	
-	float a_rad=30.0*deg2rad;
-	float cos_a = cos(a_rad);
-	float sin_a = sin(a_rad);
-
-	float rot[16] = { cos_a,  0.0,  -sin_a,  0.0,
-                      0.0,    1.0,   0.0,    0.0,
-                      sin_a,  0.0,   cos_a,  0.0,
-                      0.0,    0.0,   0.0,    1.0};
-
-	// Scaling by (2,2,1)
-	float sca[16] = { 2.0, 0.0, 0.0, 0.0,
-                      0.0, 2.0, 0.0, 0.0,
-                      0.0, 0.0, 1.0, 0.0,
-                      0.0, 0.0, 0.0, 1.0};
-
-	// Multiplication of the previous transformations
-     glMultMatrixf(rot);     // GT = GT * rot
-	 glMultMatrixf(tra);     // GT = GT * tra
-	
-	// glMultMatrixf(sca);     // GT = GT * sca
+    cube.draw();
+	glutSwapBuffers();
+}
 
 
-	// ---- END Geometric transformation section
-	
-*/
+/**
+ 
+ Function to draw simple scene requires in ex1,2,3,4 tp1
+ 
+ */
+void TPscene::drawSimpleScene(){
+    
     glPushMatrix();
     glTranslated(0, 5, 0);
     
     obj.draw();
     
     glPopMatrix();
-
+    
     // ---- BEGIN New Transform section
     
     
@@ -108,18 +78,13 @@ void TPscene::display()
     
     
     // ---- END New Transform secction
- 
+    
     
 	// ---- BEGIN Primitive drawing section
-
+    
     // NOTE: the visible face of the polygon is determined by the order of the vertices
-
+    
     obj.draw();
 
-	// ---- END Primitive drawing section
 
-	// We have been drawing in a memory area that is not visible - the back buffer, 
-	// while the graphics card is showing the contents of another buffer - the front buffer
-	// glutSwapBuffers() will swap pointers so that the back buffer becomes the front buffer and vice-versa
-	glutSwapBuffers();
 }
