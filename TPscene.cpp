@@ -83,14 +83,17 @@ void TPscene::display()
                       0.0, 0.0, 0.0, 1.0};
 
 	// Multiplication of the previous transformations
-	// glMultMatrixf(tra);     // GT = GT * tra
-	// glMultMatrixf(rot);     // GT = GT * rot
+     glMultMatrixf(rot);     // GT = GT * rot
+	 glMultMatrixf(tra);     // GT = GT * tra
+	
 	// glMultMatrixf(sca);     // GT = GT * sca
 
 
 	// ---- END Geometric transformation section
 	
 
+ 
+    
 	// ---- BEGIN Primitive drawing section
 
     // NOTE: the visible face of the polygon is determined by the order of the vertices
