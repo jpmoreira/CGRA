@@ -16,7 +16,7 @@ float deg2rad=pi/180.0;
 #define floor_single_table_width 8
 #define floor_single_table_depth 6
 
-#define nrRows 5
+#define nrRows 4
 #define nrCollumns 4
 CGFappearance *mat1;
 
