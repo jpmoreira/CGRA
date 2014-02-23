@@ -92,10 +92,13 @@ void TPscene::display()
 	// ---- END Geometric transformation section
 	
 */
+    glPushMatrix();
     glTranslated(0, 5, 0);
     
     obj.draw();
     
+    glPopMatrix();
+
     // ---- BEGIN New Transform section
     
     
