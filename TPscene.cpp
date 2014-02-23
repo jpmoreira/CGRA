@@ -50,7 +50,7 @@ void TPscene::display()
 	axis.draw();
 
 	// ---- END Background, camera and axis setup
-
+/*
 
 	// ---- BEGIN Geometric transformation section
 
@@ -91,7 +91,20 @@ void TPscene::display()
 
 	// ---- END Geometric transformation section
 	
-
+*/
+    glTranslated(0, 5, 0);
+    
+    obj.draw();
+    
+    // ---- BEGIN New Transform section
+    
+    
+    //glRotated(30.0, 0, 1, 0);
+    glScaled(2, 2, 1);
+    glTranslated(5, 0, 2);
+    
+    
+    // ---- END New Transform secction
  
     
 	// ---- BEGIN Primitive drawing section
