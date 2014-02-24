@@ -67,7 +67,6 @@ void TPscene::init()
 
 	// Defines a default normal
 	glNormal3f(0,0,1);
-    this->obj=ExampleObject();
     this->floor=new myFloor(nrCollumns*floor_single_table_width,nrRows*floor_single_table_depth,floor_thickness);
 
 }
@@ -114,39 +113,6 @@ void TPscene::display()
 }
 
 
-/**
- 
- Function to draw simple scene requires in ex1,2,3,4 tp1
- 
- */
-void TPscene::drawSimpleScene(){
-    
-    glPushMatrix();
-    glTranslated(0, 5, 0);
-    
-    obj.draw();
-    
-    glPopMatrix();
-    
-    // ---- BEGIN New Transform section
-    
-    
-    //glRotated(30.0, 0, 1, 0);
-    glScaled(2, 2, 1);
-    glTranslated(5, 0, 2);
-    
-    
-    // ---- END New Transform secction
-    
-    
-	// ---- BEGIN Primitive drawing section
-    
-    // NOTE: the visible face of the polygon is determined by the order of the vertices
-    
-    obj.draw();
-
-
-}
 
 
 void TPscene::drawTableAndChairWithOffset(double x,double z,int index){

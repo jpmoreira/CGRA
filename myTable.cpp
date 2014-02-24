@@ -26,9 +26,9 @@ void myTable::draw(){
     
     
     
-
+    //Draw lid
     glPushMatrix();
-    glTranslated(0.0, 3.5+0.3/2.0, 0.0);
+    glTranslated(0.0, leg_height+lid_thickness/2.0, 0.0);
     glScaled(lid_width, lid_thickness, lid_depth);
     lid.draw();
     glPopMatrix();

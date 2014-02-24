@@ -14,9 +14,6 @@
 class myChair: public CGFobject {
     myUnitCube leg;
     myUnitCube seat;
-    myUnitCube back_vertical_lath;
-    myUnitCube back_horizontal_lath;
-    
 public:
     void draw();
 };

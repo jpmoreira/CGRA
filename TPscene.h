@@ -11,7 +11,6 @@ class myChair;
 
 class TPscene : public CGFscene
 {
-    ExampleObject obj;
 
     
     myChair * chair;
