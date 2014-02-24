@@ -23,14 +23,34 @@ CGFappearance *mat1;
 void TPscene::init() 
 {
     
+    /*
     
     chairs=vector<myChair *>();
     tables=vector<myTable *>();
     
+    */
+    chair=new myChair();
+    table=new myTable();
     
+    
+    anglesTables=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+    anglesChairs=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+
+    dxChairs=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+    dxTables=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+    dzChairs=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+    dzTables=(double *)malloc(nrRows*nrCollumns*sizeof(double));
+
+    
+     
     for (int i=0; i<nrRows*nrCollumns; i++) {
-        chairs.push_back(new myChair());
-        tables.push_back(new myTable());
+        
+        anglesTables[i]=(rand()%40)-20;
+        anglesChairs[i]=(rand()%40)-20;
+        dxChairs[i]=(rand()%10-5.0)/10.0;
+        dxTables[i]=(rand()%10-5.0)/10.0;
+        dzChairs[i]=(rand()%10-5.0)/10.0;
+        dzTables[i]=(rand()%10-5.0)/10.0;
     }
     
 	// Enables lighting computations
@@ -76,7 +96,7 @@ void TPscene::display()
     
     for (int i=0; i<nrRows*nrCollumns; i++) {
         
-        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth,tables[i],chairs[i]);
+        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth);
     }
 
     
@@ -129,7 +149,7 @@ void TPscene::drawSimpleScene(){
 }
 
 
-void TPscene::drawTableAndChairWithOffset(double x,double z,myTable *table,myChair *chair){
+void TPscene::drawTableAndChairWithOffset(double x,double z){
     
     
     glPushMatrix();

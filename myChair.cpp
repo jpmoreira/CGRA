@@ -34,8 +34,7 @@
 void myChair::draw(){
     
     
-    glPushMatrix();
-    glRotated(angle, 0, 1, 0);
+    
     
     glPushMatrix();
     glTranslated(0, leg_height+seat_thickness/2.0, 0);
@@ -102,11 +101,9 @@ void myChair::draw(){
     leg.draw();
     glPopMatrix();
     
-    glPopMatrix();
-    
 
 }
-myChair::myChair(double a):CGFobject(),leg(myUnitCube()),seat(myUnitCube()),back_vertical_lath(myUnitCube()), back_horizontal_lath(myUnitCube()),angle(a){
+myChair::myChair(double a):CGFobject(),leg(myUnitCube()),seat(myUnitCube()),back_vertical_lath(myUnitCube()), back_horizontal_lath(myUnitCube()){
 
 }
 
