@@ -33,7 +33,7 @@ public:
     
 private:
     void drawSimpleScene();
-    void drawTableAndChairWithOffset(double x,double z);
+    void drawTableAndChairWithOffset(double x,double z,int index);
 };
 
 #endif

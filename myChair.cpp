@@ -103,11 +103,3 @@ void myChair::draw(){
     
 
 }
-myChair::myChair(double a):CGFobject(),leg(myUnitCube()),seat(myUnitCube()),back_vertical_lath(myUnitCube()), back_horizontal_lath(myUnitCube()){
-
-}
-
-myChair::myChair():myChair(rand()%40-20){
-
-
-}

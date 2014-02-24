@@ -96,7 +96,7 @@ void TPscene::display()
     
     for (int i=0; i<nrRows*nrCollumns; i++) {
         
-        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth);
+        this->drawTableAndChairWithOffset((i%nrCollumns)*floor_single_table_width, (int)(i/nrCollumns)*floor_single_table_depth,i);
     }
 
     
@@ -149,18 +149,20 @@ void TPscene::drawSimpleScene(){
 }
 
 
-void TPscene::drawTableAndChairWithOffset(double x,double z){
+void TPscene::drawTableAndChairWithOffset(double x,double z,int index){
     
     
     glPushMatrix();
     glTranslated(x, 0, z);
     
     glPushMatrix();
-    glTranslated(0.0,floor_thickness/2.0, 0.0);
+    glTranslated(dxTables[index], floor_thickness/2.0,dzTables[index]);
+    glRotated(anglesTables[index], 0, 1, 0);
     table->draw();
     glPushMatrix();
     
-    glTranslated(0, 0, -2.0);
+    glTranslated(dxChairs[index], floor_thickness/2.0, -2.0+dzChairs[index]);
+    glRotated(anglesChairs[index], 0, 1, 0);
     chair->draw();
     
     glPopMatrix();

@@ -19,9 +19,6 @@ class myChair: public CGFobject {
     
 public:
     void draw();
-    myChair(double angle);
-    myChair();
-    
 };
 
 #endif /* defined(__CGRA_1__myChair__) */
