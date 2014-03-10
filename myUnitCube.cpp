@@ -11,6 +11,8 @@
 
 void myUnitCube::draw(){
 
+    
+    glNormal3d(0, 0, 1);
     glPushMatrix();
     
     glPushMatrix();
