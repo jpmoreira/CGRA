@@ -29,7 +29,7 @@ float globalAmbientLight[4]= {0.0,0.0,0.0,1.0};
 // Coefficients for material A
 float ambA[3] = {0.2, 0.2, 0.2};
 float difA[3] = {0.6, 0.6, 0.6};
-float specA[3] = {0, 0, 0.8};
+float specA[3] = {0, 0.8, 0.8};
 float shininessA = 120.f;
 
 // Coefficients for material B
@@ -70,6 +70,9 @@ void LightingScene::init()
 	
 	//light1->disable();
 	light1->enable();
+    
+    
+    light2= new CGFlight(GL_LIGHT2,light2_pos);
 	
 	// Uncomment below to enable normalization of lighting normal vectors
 	// glEnable (GL_NORMALIZE);
