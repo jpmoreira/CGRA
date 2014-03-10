@@ -62,18 +62,33 @@ void LightingScene::init()
 	light0->setAmbient(ambientNull);
     light0->setSpecular(yellow);
 
-	//light0->disable();
-	light0->enable();
+	light0->disable();
+	//light0->enable();
 
 	light1 = new CGFlight(GL_LIGHT1, light1_pos);
 	light1->setAmbient(ambientNull);
 	
-	//light1->disable();
-	light1->enable();
+	light1->disable();
+	//light1->enable();
     
     
     light2= new CGFlight(GL_LIGHT2,light2_pos);
-	
+    light2->setAmbient(ambientNull);
+    //light2->disable();
+
+    light2->setKc(0.0);
+    light2->setKl(0.2);
+    light2->setKq(0.0);
+    
+    
+    light3= new CGFlight(GL_LIGHT3,light3_pos);
+    light3->setAmbient(ambientNull);
+    light3->setSpecular(yellow);
+    light3->setKc(0.0);
+    light3->setKl(0.0);
+    light3->setKq(0.2);
+    //light3->disable();
+
 	// Uncomment below to enable normalization of lighting normal vectors
 	// glEnable (GL_NORMALIZE);
 
@@ -106,6 +121,7 @@ void LightingScene::display()
 
 	light0->draw();
 	light1->draw();
+    light2->draw();
 	
 	// Draw axis
 	axis.draw();
