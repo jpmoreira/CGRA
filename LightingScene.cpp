@@ -122,6 +122,7 @@ void LightingScene::display()
 	light0->draw();
 	light1->draw();
     light2->draw();
+    light3->draw();
 	
 	// Draw axis
 	axis.draw();
