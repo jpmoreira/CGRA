@@ -7,7 +7,6 @@
 #include <exception>
 
 #include "CGFapplication.h"
-#include "TPscene.h"
 #include "LightingScene.h"
 
 using std::cout;
