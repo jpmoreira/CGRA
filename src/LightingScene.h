@@ -23,6 +23,8 @@ public:
 	Plane* boardB;
 	CGFappearance* materialA;
 	CGFappearance* materialB;
+	CGFappearance* material_floor;
+	CGFappearance* material_wall;
 
 	~LightingScene();
 };
