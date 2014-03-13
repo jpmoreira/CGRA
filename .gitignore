@@ -65,7 +65,6 @@ lib/glui32.lib
 lib/glui32d.lib
 lib/glut32.lib
 lib/README.txt
-main.cpp
 Tp1/CGFCode-tp1-2.4.zip
 Tp1/CGFCode-tp1-5.6.zip
 Tp1/CGFImage-tp1-2.4.png
@@ -95,3 +94,8 @@ CGRA_dev/Debug/link.2140-cvtres.read.1.tlog
 CGRA_dev/Debug/link.2140-cvtres.write.1.tlog
 CGRA_dev/Debug/link.2140-rc.read.1.tlog
 CGRA_dev/Debug/link.2140-rc.write.1.tlog
+*.tlog
+*.lib
+*.ogj
+*.pdb
+*.idb
