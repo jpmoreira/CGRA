@@ -1,2 +1,15 @@
-
-CGRA_1.1
+*.ilk
+*.exe
+*.pdb
+*.obj
+*.obi
+*.idb
+*.tlog
+*.log
+*.vcxproj
+*.suo
+*.lastbuildstate
+*.filters
+*.sdf
+*.opensdf
+*.sln
