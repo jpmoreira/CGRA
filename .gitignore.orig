@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+*.ilk
+*.exe
+*.pdb
+*.obj
+*.obi
+*.idb
+*.tlog
+*.log
+*.vcxproj
+*.suo
+*.lastbuildstate
+*.filters
+*.sdf
+*.opensdf
+*.sln
+=======
+=======
+>>>>>>> c825b13b24c9e70c020d3310bc2fbfca553e8e98
+=======
+>>>>>>> c825b13b24c9e70c020d3310bc2fbfca553e8e98
 CGRA_dev.opensdf
 CGRA_dev.sdf
 CGRA_dev.sln
@@ -99,4 +122,10 @@ CGRA_dev/Debug/link.2140-rc.write.1.tlog
 *.ogj
 *.pdb
 *.idb
-*.log
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> c825b13b24c9e70c020d3310bc2fbfca553e8e98
+=======
+>>>>>>> c825b13b24c9e70c020d3310bc2fbfca553e8e98
+=======
+>>>>>>> c825b13b24c9e70c020d3310bc2fbfca553e8e98
