@@ -3,7 +3,7 @@
 #include "CGFapplication.h"
 #include "myTable.h"
 #include "Plane.h"
-
+#include "coordinateSystems.h"
 #include <math.h>
 
 float pi = acos(-1.0);
@@ -16,7 +16,7 @@ float deg2rad=pi/180.0;
 float light0_pos[4] = {4, 6.0, 1.0, 1.0};
 float light1_pos[4] = {10.5, 6.0, 1.0, 1.0};
 
-float light2_pos[4] = {10.5, 6.0, 5.0, 1.0};
+float light2_pos[4] = {-10.5, 6.0, 5.0, 1.0};
 float light3_pos[4] = {4, 6.0, 5.0, 1.0};
 
 // Global ambient light (do not confuse with ambient component of individual lights)
@@ -85,10 +85,10 @@ void LightingScene::init()
 	light2->setAmbient(ambientNull);
 	
 	//light2->enable();
-	light2->disable();
+	//light2->disable();
 
-	light2->setKc(0);
-	light2->setKl(1);
+	light2->setKc(1);
+	light2->setKl(0);
 	light2->setKq(0);
 
 
@@ -117,7 +117,14 @@ void LightingScene::init()
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
 	material_wall= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
-	
+    
+    
+    cil=new myCylinder(2,6);
+    cube=new myUnitCube();
+    
+    
+    
+
 
 }
 
@@ -147,7 +154,7 @@ void LightingScene::display()
 	// ---- END Background, camera and axis setup
 
 	// ---- BEGIN Primitive drawing section
-
+/*
 	//First Table
 	glPushMatrix();
 		glTranslated(5,0,8);
@@ -204,6 +211,13 @@ void LightingScene::display()
 		boardB->draw();
 	glPopMatrix();
 	
+    
+    */
+    
+    
+    cil->draw();
+    
+    //cube->draw();
 	// ---- END Primitive drawing section
 	
 

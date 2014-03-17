@@ -26,7 +26,7 @@ typedef struct CartesianPoint {
 typedef struct CylindricalPoint {
     double rho;
     double r;
-    double z;
+    double y;
     
     
 } CylindricalPoint;

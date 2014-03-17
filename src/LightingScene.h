@@ -5,6 +5,8 @@
 #include "CGFappearance.h"
 #include "myTable.h"
 #include "Plane.h"
+#include "myCylinder.h"
+#include "myUnitCube.h"
 
 class LightingScene : public CGFscene
 {
@@ -25,7 +27,10 @@ public:
 	CGFappearance* materialB;
 	CGFappearance* material_floor;
 	CGFappearance* material_wall;
-
+    
+    
+    myCylinder *cil;
+    myUnitCube *cube;
 	~LightingScene();
 };
 
