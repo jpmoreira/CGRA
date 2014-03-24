@@ -56,6 +56,7 @@ void LightingScene::init()
 	// Define ambient light (do not confuse with ambient component of individual lights)
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmbientLight);
 	
+    
 	// Declares and enables two lights, with null ambient component
 
 	light0 = new CGFlight(GL_LIGHT0, light0_pos);
