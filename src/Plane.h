@@ -1,6 +1,6 @@
 #pragma once
 
-#include <CGFobject.h>
+#include "CGF/CGFobject.h"
 class Plane
 {
 public:
@@ -11,4 +11,6 @@ public:
 private:
 	int _numDivisions; // Number of triangles that constitute rows/columns
 };
+
+
 

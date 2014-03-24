@@ -1,20 +1,20 @@
 //
 //  Table.h
-//  CGRA
+//  CGRA-1
+//
+//  Created by José Pedro Moreira on 23/02/14.
+//  Copyright (c) 2014 José Pedro Moreira. All rights reserved.
 //
 
 #ifndef __CGRA_1__Table__
 #define __CGRA_1__Table__
 
 #include <iostream>
-#include "CGFappearance.h"
 #include "myUnitCube.h"
 class myTable: public CGFobject{
 
     myUnitCube leg;
     myUnitCube lid;
-	CGFappearance* material_tLid;
-	CGFappearance* material_tLeg;
 
     
 public:
