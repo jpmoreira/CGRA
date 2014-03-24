@@ -22,4 +22,6 @@
 *.lib
 *Debug/*
 *lib/*
+*src
 *.opensdf
+*.unsuccessfulbuild
