@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CGF/CGFobject.h"
+#include "CGFobject.h"
 class Plane
 {
 public:
