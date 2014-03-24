@@ -33,7 +33,6 @@ void myCylinder::draw(){
 void myCylinder::drawRing(int stackNr){
 
     //printf("drawing\n");
-    float stackHeight=1.0/stacks;
     CylindricalPoint cylPt1,cylPt2,cylNormal;
     cylPt1.r=0.5;
     cylPt1.y=stackNr/(double)stacks-0.5;
@@ -44,7 +43,7 @@ void myCylinder::drawRing(int stackNr){
     CartesianPoint cartPt1,cartPt2,cartNormal;
     
     
-    printf("Y= %f stackNr= %d conta= %f\n",cylPt1.y,stackNr,stackNr/(double)stacks);
+
     
     for (int i=0; i<slices; i++) {
         
