@@ -30,14 +30,14 @@ float shininess_tLeg = 0.4;
 
 
 myTable::myTable():CGFobject(),leg(myUnitCube()),lid(myUnitCube()){
-    
+    material_tLid= new CGFappearance(amb_tLid, dif_tLid, spec_tLid, shininess_tLid);
+	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
+
     
 }
 
 void myTable::draw(){
     
-    material_tLid= new CGFappearance(amb_tLid, dif_tLid, spec_tLid, shininess_tLid);
-	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
     
     
     glPushMatrix();
