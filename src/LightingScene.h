@@ -5,27 +5,32 @@
 #include "CGFappearance.h"
 #include "myTable.h"
 #include "Plane.h"
+#include "myCylinder.h"
+#include "myUnitCube.h"
 
 class LightingScene : public CGFscene
 {
 public:
 	void init();
 	void display();
-
+    
 	CGFlight* light0;
 	CGFlight* light1;
-    CGFlight* light2;
-    CGFlight* light3;
-
+	CGFlight* light2;
+	CGFlight* light3;
+    
 	myTable* table;
 	Plane* wall;
 	Plane* boardA;
 	Plane* boardB;
 	CGFappearance* materialA;
 	CGFappearance* materialB;
+	CGFappearance* material_floor;
+	CGFappearance* material_wall;
     
     
-
+    myCylinder *cil;
+    myUnitCube *cube;
 	~LightingScene();
 };
 

@@ -153,7 +153,7 @@ void LightingScene::display()
 	// ---- END Background, camera and axis setup
 
 	// ---- BEGIN Primitive drawing section
-/*
+
 	//First Table
 	glPushMatrix();
 		glTranslated(5,0,8);
@@ -211,7 +211,6 @@ void LightingScene::display()
 	glPopMatrix();
 	
     
-    */
     
     
     cil->draw();
