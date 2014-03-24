@@ -44,7 +44,7 @@ void myCylinder::drawRing(int stackNr){
     CartesianPoint cartPt1,cartPt2,cartNormal;
     
     
-    printf("Y= %f stackNr= %d conta= %f\n",cylPt1.y,stackNr,stackNr/(double)stacks);
+    //printf("Y= %f stackNr= %d conta= %f\n",cylPt1.y,stackNr,stackNr/(double)stacks);
     
     for (int i=0; i<slices; i++) {
         
