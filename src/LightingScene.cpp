@@ -58,6 +58,8 @@ void LightingScene::init()
 {
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
+	glShadeModel (GL_FLAT);
+	
     
 	// Sets up some lighting parameters
 	// Computes lighting only using the front face normals and materials
@@ -120,8 +122,9 @@ void LightingScene::init()
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
     
     
-    cil=new myCylinder(2,6);
-    cube=new myUnitCube();
+    cil=new myCylinder(50,100);
+    cube=new myUnitCube(); 
+
     
     
     
@@ -216,7 +219,7 @@ void LightingScene::display()
      
     
     
-    cil->draw();
+    //cil->draw();
     
     //cube->draw();
 	// ---- END Primitive drawing section
