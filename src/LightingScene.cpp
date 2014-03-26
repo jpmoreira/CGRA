@@ -69,6 +69,8 @@ double cyl_y_scale = 2;
 
 void LightingScene::init()
 {
+    
+    glShadeModel(GL_SMOOTH);
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
 	glShadeModel (GL_SMOOTH);
@@ -254,6 +256,7 @@ void LightingScene::display()
 	// while the graphics card is showing the contents of another buffer - the front buffer
 	// glutSwapBuffers() will swap pointers so that the back buffer becomes the front buffer and vice-versa
 	glutSwapBuffers();
+
 }
 
 LightingScene::~LightingScene() 

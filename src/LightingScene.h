@@ -7,6 +7,7 @@
 #include "Plane.h"
 #include "myCylinder.h"
 #include "myUnitCube.h"
+#include "mySemiSphere.h"
 
 class LightingScene : public CGFscene
 {
@@ -30,6 +31,9 @@ public:
     
     
     myCylinder *cil;
+    
+    mySemiSphere *sphere;
+    
     myUnitCube *cube;
 	~LightingScene();
 };

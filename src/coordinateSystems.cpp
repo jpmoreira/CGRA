@@ -33,3 +33,26 @@ CylindricalPoint cartesianToCylindrical(CartesianPoint *cartPt){
     
 }
 
+
+
+CartesianPoint sphericalToCartesian(SphericalPoint * sphPt){
+
+    CartesianPoint pt;
+    pt.z=sphPt->r*sin(sphPt->phy*M_PI/180.)*cos(sphPt->rho*M_PI/180.);
+    pt.x=sphPt->r*sin(sphPt->phy*M_PI/180.)*sin(sphPt->rho*M_PI/180.);
+    pt.y=sphPt->r*cos(sphPt->phy*M_PI/180.);
+    
+    return pt;
+
+}
+SphericalPoint cartesianToSpherical(CartesianPoint * cartPt){
+    
+    SphericalPoint pt;
+    pt.r=sqrt(cartPt->x*cartPt->x+cartPt->y*cartPt->y+cartPt->z*cartPt->z);
+    pt.phy=acos(cartPt->y/pt.r)*180.0/M_PI;
+    pt.rho=atan(cartPt->x/pt.r)*180.0/M_PI;
+    
+    return pt;
+
+}
+
