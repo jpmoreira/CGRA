@@ -56,6 +56,8 @@ float yellow[4]={1,1,0,1};
 
 void LightingScene::init()
 {
+    
+    glShadeModel(GL_SMOOTH);
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
     
@@ -121,8 +123,12 @@ void LightingScene::init()
     
     
     cil=new myCylinder(2,6);
+    sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     
+    
+    
+
     
     
     
@@ -151,7 +157,7 @@ void LightingScene::display()
 	
 	// Draw axis
 	axis.draw();
-    
+   /*
 	// ---- END Background, camera and axis setup
     
 	// ---- BEGIN Primitive drawing section
@@ -214,9 +220,10 @@ void LightingScene::display()
      
      
      
+    */
     
-    
-    cil->draw();
+    //cil->draw();
+    sphere->draw();
     
     //cube->draw();
 	// ---- END Primitive drawing section
@@ -226,6 +233,7 @@ void LightingScene::display()
 	// while the graphics card is showing the contents of another buffer - the front buffer
 	// glutSwapBuffers() will swap pointers so that the back buffer becomes the front buffer and vice-versa
 	glutSwapBuffers();
+
 }
 
 LightingScene::~LightingScene() 

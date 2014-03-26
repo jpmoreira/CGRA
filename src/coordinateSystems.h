@@ -31,8 +31,19 @@ typedef struct CylindricalPoint {
     
 } CylindricalPoint;
 
+typedef struct SphericalPoint{
+
+    double r;
+    double rho;
+    double phy;
+
+} SphericalPoint;
+
 
 
 
 CartesianPoint cylindricalToCartesian(CylindricalPoint * cilPt);
 CylindricalPoint cartesianToCylindrical(CartesianPoint *cartPt);
+
+CartesianPoint sphericalToCartesian(SphericalPoint * sphPt);
+SphericalPoint cartesianToSpherical(CartesianPoint * cartPt);
