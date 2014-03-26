@@ -95,7 +95,7 @@ void LightingScene::init()
 	light2->setKq(0);
     
     
-	light3 = new CGFlight(GL_LIGHT3, light3_pos);
+	light3 = new myLamp(10,10,GL_LIGHT3, light3_pos);
 	light3->setAmbient(ambientNull);
 	//light3->setSpecular(yellow);
     
@@ -157,7 +157,7 @@ void LightingScene::display()
 	
 	// Draw axis
 	axis.draw();
-   /*
+   
 	// ---- END Background, camera and axis setup
     
 	// ---- BEGIN Primitive drawing section
@@ -220,10 +220,9 @@ void LightingScene::display()
      
      
      
-    */
     
     //cil->draw();
-    sphere->draw();
+    //sphere->draw();
     
     //cube->draw();
 	// ---- END Primitive drawing section

@@ -7,7 +7,7 @@
 #include "Plane.h"
 #include "myCylinder.h"
 #include "myUnitCube.h"
-#include "mySemiSphere.h"
+#include "myLamp.h"
 
 class LightingScene : public CGFscene
 {
@@ -18,7 +18,7 @@ public:
 	CGFlight* light0;
 	CGFlight* light1;
 	CGFlight* light2;
-	CGFlight* light3;
+	myLamp* light3;
     
 	myTable* table;
 	Plane* wall;
