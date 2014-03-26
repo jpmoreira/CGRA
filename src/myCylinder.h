@@ -13,10 +13,15 @@
 #include <CGFobject.h>
 
 #endif /* defined(__CGRA_1__myCylinder__) */
+
+#define CENTERED_NORMALS 0
+#define VERTEX_NORMALS 1
+
 class myCylinder: public CGFobject {
     int stacks,slices;
     void drawRing(int stackNr);
+	void drawRingVertex(int stackNr);
 public:
-    void draw();
+    void draw(int opt);
     myCylinder(int stacksNr,int slicesNr);
 };
