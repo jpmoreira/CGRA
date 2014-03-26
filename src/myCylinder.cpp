@@ -13,19 +13,25 @@
 myCylinder::myCylinder(int stackNr,int slicesNr):slices(slicesNr),stacks(stackNr){
 }
 
-void myCylinder::draw(){
+void myCylinder::draw(int opt){
 
-    
-    
-    glBegin(GL_QUADS);
-    
-    for (int i=0; i<stacks; i++) {
-        this->drawRing(i);
-    }
-    
-    glEnd();
 
-    
+
+	glBegin(GL_QUADS);
+
+	if(opt == CENTERED_NORMALS)
+		for (int i=0; i<stacks; i++) {
+			this->drawRing(i);
+		}
+	else{
+		for (int i=0; i<stacks; i++) {
+			this->drawRingVertex(i);
+		}
+	}
+
+	glEnd();
+
+
 
 }
 
