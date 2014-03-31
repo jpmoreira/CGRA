@@ -22,5 +22,6 @@
 *.lib
 *Debug/*
 *lib/*
+*CGRA__DEV/*
 *.opensdf
 *.unsuccessfulbuild
