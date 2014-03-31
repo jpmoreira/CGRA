@@ -120,6 +120,7 @@ void LightingScene::init()
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
 	material_wall= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
+
     
     
     cil=new myCylinder(2,6);

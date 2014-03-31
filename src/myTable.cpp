@@ -29,11 +29,18 @@ float spec_tLeg[3] = {0.48, 0.48, 0.48};
 float shininess_tLeg = 0.4;
 
 
+//Coefficients for texture tableAppearence
+float amb_TblApp[3]= {0.2, 0.12, 0.05};
+float dif_TblApp[3] = {0.9, 0.4, 0.1};
+float spec_TblApp[3] = {0.1, 0.1, 0.1};
+float shininess_TblApp = 1.f;
+
+
 myTable::myTable():CGFobject(),leg(myUnitCube()),lid(myUnitCube()){
     material_tLid= new CGFappearance(amb_tLid, dif_tLid, spec_tLid, shininess_tLid);
 	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
-
-    
+	tableAppearence= new CGFappearance(amb_TblApp, dif_TblApp, spec_TblApp, shininess_TblApp);
+	tableAppearence->setTexture("table.png");
 }
 
 void myTable::draw(){
@@ -43,7 +50,8 @@ void myTable::draw(){
     glPushMatrix();
     glTranslated(0.0, 3.5+0.3/2.0, 0.0);
     glScaled(lid_width, lid_thickness, lid_depth);
-	material_tLid->apply();
+	//material_tLid->apply();
+	tableAppearence->apply();
     lid.draw();
     glPopMatrix();
     

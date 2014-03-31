@@ -15,6 +15,7 @@ class myTable: public CGFobject{
     myUnitCube lid;
 	CGFappearance* material_tLid;
 	CGFappearance* material_tLeg;
+	CGFappearance* tableAppearence;
     
     
 public:
