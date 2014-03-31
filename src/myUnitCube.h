@@ -11,8 +11,11 @@
 
 #include <CGFobject.h>
 class myUnitCube: public CGFobject {
+private:
+	int coords[2][8];
 public:
     void draw();
+	void setTextureCoords(int[2][8]);
 };
 
 
