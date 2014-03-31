@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 José Pedro Moreira. All rights reserved.
 //
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-#define PATH_TABLE_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\table.png"
+#define PATH_TABLE_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\table.png"
 #else
 #define PATH_TABLE_TEXTURE "table.png"
 #endif
@@ -45,8 +45,8 @@ myTable::myTable():CGFobject(),leg(myUnitCube()),lid(myUnitCube()){
     material_tLid= new CGFappearance(amb_tLid, dif_tLid, spec_tLid, shininess_tLid);
 	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
 	tableAppearence= new CGFappearance(amb_TblApp, dif_TblApp, spec_TblApp, shininess_TblApp);
-
-	tableAppearence->setTexture(PATH_TABLE_TEXTURE);
+	string path_to_tablText= string(PATH_TABLE_TEXTURE);
+	tableAppearence->setTexture(path_to_tablText);
 }
 
 void myTable::draw(){
