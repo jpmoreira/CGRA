@@ -10,46 +10,61 @@
 
 
 void myUnitCube::draw(){
+    
+    
+    glBegin(GL_QUADS);
 
-    
+    //front face
     glNormal3d(0, 0, 1);
-    glPushMatrix();
+    glVertex3d(-0.5, 0.5, 0.5);
+    glVertex3d(-0.5, -0.5, 0.5);
+    glVertex3d(0.5, -0.5, 0.5);
+    glVertex3d(0.5, 0.5, 0.5);
     
-    glPushMatrix();
-    glTranslated(0, 0, 0.5);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
     
-    glPushMatrix();
-    glTranslated(0.0, 0.5, 0.0);
-    glRotated(-90.0, 1, 0, 0);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
+    //back face
+    glNormal3d(0, 0, -1);
+    glVertex3d(0.5, 0.5, -0.5);
+    glVertex3d(0.5, -0.5, -0.5);
+    glVertex3d(-0.5, -0.5, -0.5);
+    glVertex3d(-0.5, 0.5, -0.5);
     
-    glPushMatrix();
-    glTranslated(0.0, -0.5, 0.0);
-    glRotated(90.0, 1, 0, 0);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
+    //top face
+    glNormal3d(0, 1, 0);
+    glVertex3d(0.5, 0.5, 0.5);
+    glVertex3d(0.5, 0.5, -0.5);
+    glVertex3d(-0.5, 0.5, -0.5);
+    glVertex3d(-0.5, 0.5, 0.5);
     
-    glPushMatrix();
-    glTranslated(0.0, 0.0, -0.5);
-    glRotated(180.0, 1, 0, 0);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
     
-    glPushMatrix();
-    glTranslated(0.5, 0.0, 0.0);
-    glRotated(90.0, 0.0, 1.0, 0.0);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
+    //bottom face
+    glNormal3d(0, -1, 0);
+    glVertex3d(-0.5, -0.5, 0.5);
+    glVertex3d(-0.5, -0.5, -0.5);
+    glVertex3d(0.5, -0.5, -0.5);
+    glVertex3d(0.5, -0.5, 0.5);
     
-    glPushMatrix();
-    glTranslated(-0.5, 0.0, 0.0);
-    glRotated(-90.0, 0.0, 1.0, 0.0);
-    glRectd(0.5, 0.5, -0.5, -0.5);
-    glPopMatrix();
+    //left face
     
-    glPopMatrix();
+    glNormal3d(-1, 0, 0);
+    glVertex3d(-0.5, 0.5, 0.5);
+    glVertex3d(-0.5, 0.5, -0.5);
+    glVertex3d(-0.5, -0.5, -0.5);
+    glVertex3d(-0.5, -0.5, 0.5);
+    
+    //right face
+    
+    glNormal3d(1, 0, 0);
+    glVertex3d(0.5, -0.5, 0.5);
+    glVertex3d(0.5, -0.5, -0.5);
+    glVertex3d(0.5, 0.5, -0.5);
+    glVertex3d(0.5, 0.5, 0.5);
+
+    glEnd();
+    
 
 }
+
+
+
+
