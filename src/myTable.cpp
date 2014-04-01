@@ -45,8 +45,7 @@ myTable::myTable():CGFobject(),leg(myUnitCube()),lid(myUnitCube()){
     material_tLid= new CGFappearance(amb_tLid, dif_tLid, spec_tLid, shininess_tLid);
 	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
 	tableAppearence= new CGFappearance(amb_TblApp, dif_TblApp, spec_TblApp, shininess_TblApp);
-	string path_to_tablText= string(PATH_TABLE_TEXTURE);
-	tableAppearence->setTexture(path_to_tablText);
+	tableAppearence->setTexture(string(PATH_TABLE_TEXTURE));
 }
 
 void myTable::draw(){
@@ -56,9 +55,10 @@ void myTable::draw(){
     glPushMatrix();
     glTranslated(0.0, 3.5+0.3/2.0, 0.0);
     glScaled(lid_width, lid_thickness, lid_depth);
-	material_tLid->apply();
+	//material_tLid->apply();
 	//tableAppearence->apply();
-    lid.draw();
+	//lid.draw();
+    lid.draw(tableAppearence, GL_REPEAT);
     glPopMatrix();
     
     
