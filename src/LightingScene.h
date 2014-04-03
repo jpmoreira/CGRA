@@ -28,6 +28,7 @@ public:
 	CGFappearance* materialB;
 	CGFappearance* material_floor;
 	CGFappearance* material_wall;
+	CGFappearance* slides_appearence;
     
     
     myCylinder *cil;

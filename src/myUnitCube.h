@@ -23,7 +23,7 @@ private:
 	CGFappearance* tableAppearence;
 public:
     void draw();
-	void draw(CGFappearance *texture, int gl_mode);
+	void draw(CGFappearance *appearence);
 };
 
 

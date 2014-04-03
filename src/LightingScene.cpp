@@ -9,6 +9,12 @@
 float pi = acos(-1.0);
 float deg2rad=pi/180.0;
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
+#define PATH_SLIDES_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\slides.png"
+#else
+#define PATH_SLIDES_TEXTURE "slides.png"
+#endif
+
 #define BOARD_HEIGHT 6.0
 #define BOARD_WIDTH 6.4
 
@@ -49,6 +55,12 @@ float amb_floor[3] = {0.02, 0.02, 0.02};
 float dif_floor[3] = {0.65, 0.59, 0.48};
 float spec_floor[3] = {0.26, 0.236, 0.192};
 float shininess_floor = 0.15;
+
+//coefficients for slides_appearence
+float amb_slides[3] = {0.2, 0.2, 0.2};
+float dif_slides[3] = {0.8, 0.8, 0.8};
+float spec_slides[3] = {0.9, 0.9, 0.9};
+float shininess_slides = 0.1;
 
 
 float ambientNull[4]={0,0,0,1};
@@ -123,6 +135,8 @@ void LightingScene::init()
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
 	material_wall= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
+	slides_appearence = new CGFappearance(amb_slides, dif_slides, spec_slides, shininess_slides);
+	slides_appearence->setTexture(string(PATH_SLIDES_TEXTURE));
 
 
 
@@ -209,8 +223,8 @@ void LightingScene::display()
 	glTranslated(4,4,0.2);
 	glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
 	glRotated(90.0,1,0,0);
-	materialA->apply();
-	boardA->draw();
+	//materialA->apply();
+	boardA->draw(slides_appearence);
 	glPopMatrix();
 
 	//PlaneB

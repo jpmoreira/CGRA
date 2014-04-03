@@ -69,11 +69,10 @@ void myUnitCube::draw(){
 
 }
 
-void myUnitCube::draw(CGFappearance *texture, int gl_mode){
+void myUnitCube::draw(CGFappearance *appearance){
 
 
-	texture->setTextureWrap(gl_mode, gl_mode);
-	texture->apply();
+	appearance->apply();
 	glBegin(GL_QUADS);
 
 

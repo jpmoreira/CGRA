@@ -46,6 +46,7 @@ myTable::myTable():CGFobject(),leg(myUnitCube()),lid(myUnitCube()){
 	material_tLeg= new CGFappearance(amb_tLeg, dif_tLeg, spec_tLeg, shininess_tLeg);
 	tableAppearence= new CGFappearance(amb_TblApp, dif_TblApp, spec_TblApp, shininess_TblApp);
 	tableAppearence->setTexture(string(PATH_TABLE_TEXTURE));
+
 }
 
 void myTable::draw(){
@@ -58,7 +59,7 @@ void myTable::draw(){
 	//material_tLid->apply();
 	//tableAppearence->apply();
 	//lid.draw();
-    lid.draw(tableAppearence, GL_REPEAT);
+    lid.draw(tableAppearence);
     glPopMatrix();
     
     
