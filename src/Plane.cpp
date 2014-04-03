@@ -59,36 +59,24 @@ void Plane::draw(CGFappearance *appearence){
 		int bz = 0;
 
 		glBegin(GL_TRIANGLE_STRIP);
-		if(bx == 0){
-			glTexCoord2d(0, 0);
-			printf("\ngltexcoord(0,0)");
-		}
+		glTexCoord2d((1.0/_numDivisions)*bx, 0);
 		glVertex3f(bx, 0, 0);
 
 
 		for (; bz<_numDivisions; bz++)
 		{
-			if(bx == (_numDivisions-2) && bz== 0){
-				glTexCoord2d(1, 0);
-				printf("\ngltexcoord(1,0)");
-			}
+
+			glTexCoord2d((1.0/_numDivisions)*(bx+1), (1.0/_numDivisions)*bz);
 			glVertex3f(bx + 1, 0, bz);
 
 
-			if(bz == (_numDivisions-2) && bx == 0){
-				printf("\ngltexcoord(0,1)");
-				glTexCoord2d(0, 1);
-			}
+			glTexCoord2d((1.0/_numDivisions)*bx, (1.0/_numDivisions)*(bz+1));
 			glVertex3f(bx, 0, bz + 1);
 		}
 
-
-		if(bx == (_numDivisions -1)){
-			printf("\ngltexcoord(1,1)");
-			glTexCoord2d(1, 1);
-		}
+		glTexCoord2d((1.0/_numDivisions)*(bx+1), (1.0/_numDivisions)*(bz+1));
 		glVertex3d(bx+ 1, 0, _numDivisions);
-		
+
 		bz= 0;
 		glEnd();
 	}
