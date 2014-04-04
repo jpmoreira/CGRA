@@ -11,12 +11,17 @@ float deg2rad=pi/180.0;
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
 #define PATH_SLIDES_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\slides.png"
+#define PATH_BOARD_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\board.png"
 #else
 #define PATH_SLIDES_TEXTURE "slides.png"
+#define PATH_BOARD_TEXTURE "board.png"
 #endif
 
 #define BOARD_HEIGHT 6.0
 #define BOARD_WIDTH 6.4
+
+#define BOARD_PNG_HEIGHT 372
+#define BOARD_PNG_WIDTH 512
 
 // Positions for two lights
 float light0_pos[4] = {4, 6.0, 1.0, 1.0};
@@ -59,9 +64,15 @@ float shininess_floor = 0.15;
 //coefficients for slides_appearence
 float amb_slides[3] = {0.2, 0.2, 0.2};
 float dif_slides[3] = {0.8, 0.8, 0.8};
-float spec_slides[3] = {0.9, 0.9, 0.9};
+float spec_slides[3] = {0.1, 0.1, 0.1};
 float shininess_slides = 0.1;
 
+
+//coefficients for board_appearence
+float amb_board_ap[3] = {0.2, 0.2, 0.2};
+float dif_board_ap[3] = {0.1, 0.1, 0.1};
+float spec_board_ap[3] = {0.7, 0.7, 0.7};
+float shininess_board_ap = 1;
 
 float ambientNull[4]={0,0,0,1};
 float yellow[4]={1,1,0,1};
@@ -137,6 +148,8 @@ void LightingScene::init()
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
 	slides_appearence = new CGFappearance(amb_slides, dif_slides, spec_slides, shininess_slides);
 	slides_appearence->setTexture(string(PATH_SLIDES_TEXTURE));
+	board_appearence= new CGFappearance(amb_board_ap, dif_board_ap, spec_board_ap, shininess_board_ap);
+	board_appearence->setTexture(string(PATH_BOARD_TEXTURE));
 
 
 
@@ -232,8 +245,8 @@ void LightingScene::display()
 	glTranslated(10.5,4,0.2);
 	glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
 	glRotated(90.0,1,0,0);
-	materialB->apply();
-	boardB->draw();
+	//materialB->apply();
+	boardB->draw(board_appearence, BOARD_PNG_HEIGHT, BOARD_PNG_WIDTH);
 	glPopMatrix();
 
 

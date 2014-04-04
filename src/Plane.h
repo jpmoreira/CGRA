@@ -10,6 +10,7 @@ public:
 	~Plane(void);
 	void draw();
 	void draw(CGFappearance *appearence);
+	void draw(CGFappearance *appearence, double height, double width);
 private:
 	int _numDivisions; // Number of triangles that constitute rows/columns
 };
