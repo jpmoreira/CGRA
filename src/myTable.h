@@ -16,6 +16,7 @@ class myTable: public CGFobject{
 	CGFappearance* material_tLid;
 	CGFappearance* material_tLeg;
 	CGFappearance* tableAppearence;
+	CGFtexture* lid_texture;
     
     
 public:
