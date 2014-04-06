@@ -54,6 +54,10 @@ float shininess_floor = 0.15;
 float ambientNull[4]={0,0,0,1};
 float yellow[4]={1,1,0,1};
 
+
+#define floorTextureName "floor.png"
+#define windowTextureName "window.png"
+
 void LightingScene::init()
 {
     
@@ -111,15 +115,22 @@ void LightingScene::init()
     
 	//Declares scene elements
 	table = new myTable();
-	wall = new Plane();
+	wallLeft = new Plane();
+    wallLeft->enableClamp(0.35,0.23);
+    wallFront= new Plane();
+    wallFront->enableRepeat(15, 15);
 	boardA = new Plane(BOARD_A_DIVISIONS);
 	boardB = new Plane(BOARD_B_DIVISIONS);
 	
 	//Declares materials
 	materialA = new CGFappearance(ambA,difA,specA,shininessA);
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
-	material_wall= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
+	material_wallFront= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
+    material_wallLeft= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
+    material_floor->setTexture(floorTextureName);
+    material_wallLeft->setTexture(windowTextureName);
+    material_wallLeft->setTextureWrap(GL_CLAMP, GL_CLAMP);
 
     
     
@@ -180,7 +191,7 @@ void LightingScene::display()
      glTranslated(7.5,0,7.5);
      glScaled(15,0.2,15);
      material_floor->apply();
-     wall->draw();
+     wallFront->draw();
      glPopMatrix();
      
      //LeftWall
@@ -188,8 +199,8 @@ void LightingScene::display()
      glTranslated(0,4,7.5);
      glRotated(-90.0,0,0,1);
      glScaled(8,0.2,15);
-     material_wall->apply();
-     wall->draw();
+     material_wallLeft->apply();
+     wallLeft->draw();
      glPopMatrix();
      
      //PlaneWall
@@ -197,7 +208,8 @@ void LightingScene::display()
      glTranslated(7.5,4,0);
      glRotated(90.0,1,0,0);
      glScaled(15,0.2,8);
-     wall->draw();
+    material_wallFront->apply();
+     wallFront->draw();
      glPopMatrix();
      
      
@@ -242,7 +254,8 @@ LightingScene::~LightingScene()
 	delete(light1);
 
 	delete(table);
-	delete(wall);
+	delete(wallLeft);
+    delete(wallFront);
 	delete(boardA);
 	delete(boardB);
 	delete(materialA);

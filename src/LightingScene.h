@@ -21,13 +21,15 @@ public:
 	myLamp* light3;
     
 	myTable* table;
-	Plane* wall;
+	Plane* wallLeft;
+    Plane* wallFront;
 	Plane* boardA;
 	Plane* boardB;
 	CGFappearance* materialA;
 	CGFappearance* materialB;
 	CGFappearance* material_floor;
-	CGFappearance* material_wall;
+	CGFappearance* material_wallFront;
+    CGFappearance* material_wallLeft;
     
     
     myCylinder *cil;
