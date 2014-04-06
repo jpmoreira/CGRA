@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CGFobject.h"
-#include "CGFappearance.h"
 class Plane
 {
     double dx,dy;
