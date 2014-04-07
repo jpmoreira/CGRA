@@ -11,8 +11,13 @@
 
 #include <CGFobject.h>
 class myUnitCube: public CGFobject {
+    
+    double repsX,repsY,repsZ;
 public:
+    
+    void setTextureReps(double xReps,double yReps,double zReps);
     void draw();
+    myUnitCube();
 };
 
 
