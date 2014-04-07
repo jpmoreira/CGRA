@@ -12,6 +12,21 @@ float deg2rad=pi/180.0;
 #define BOARD_HEIGHT 6.0
 #define BOARD_WIDTH 6.4
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
+#define PATH_WALL_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\wall.png"
+#define PATH_FLOOR_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\floor.png"
+#define PATH_SLIDES_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\slides.png"
+#define PATH_BOARD_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\board.png"
+#define PATH_WINDOW_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\window.png"
+#else
+#define PATH_WALL_TEXTURE "wall.png"
+#define PATH_FLOOR_TEXTURE "floor.png"
+#define PATH_SLIDES_TEXTURE "slides.png"
+#define PATH_BOARD_TEXTURE "board.png"
+#define PATH_WINDOW_TEXTURE "window.png"
+
+#endif
+
 // Positions for two lights
 float light0_pos[4] = {4, 6.0, 1.0, 1.0};
 float light1_pos[4] = {10.5, 6.0, 1.0, 1.0};
@@ -54,9 +69,6 @@ float shininess_floor = 0.15;
 float ambientNull[4]={0,0,0,1};
 float yellow[4]={1,1,0,1};
 
-
-#define floorTextureName "floor.png"
-#define windowTextureName "window.png"
 
 void LightingScene::init()
 {
@@ -125,8 +137,8 @@ void LightingScene::init()
 	//Declares materials
 	materialA = new CGFappearance(ambA,difA,specA,shininessA);
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
-    materialB->setTexture("board.png");
-    materialA->setTexture("slides.png");
+    materialB->setTexture(PATH_BOARD_TEXTURE);
+    materialA->setTexture(PATH_SLIDES_TEXTURE);
     boardA->enableClamp(0, 0);
     boardB->enableClamp(0.15, 0);
     materialA->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
@@ -135,14 +147,14 @@ void LightingScene::init()
 	material_wallFront= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
     material_wallLeft= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
-    material_floor->setTexture(floorTextureName);
-    material_wallLeft->setTexture(windowTextureName);
+    material_floor->setTexture(PATH_FLOOR_TEXTURE);
+    material_wallLeft->setTexture(PATH_WINDOW_TEXTURE);
     material_wallLeft->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
     
     
     cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
-    cilinderApp->setTexture("wall.png");
+    cilinderApp->setTexture(PATH_WALL_TEXTURE);
     
     cil=new myCylinder(2,12);
     cil->enableRepeat(4, 12);
