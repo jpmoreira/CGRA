@@ -9,6 +9,8 @@
 #include "myUnitCube.h"
 #include "myLamp.h"
 
+#define CL_CLAMP_TO_EDGE 0x812F
+
 class LightingScene : public CGFscene
 {
 public:
@@ -30,6 +32,8 @@ public:
 	CGFappearance* material_floor;
 	CGFappearance* material_wallFront;
     CGFappearance* material_wallLeft;
+    
+    CGFappearance* cilinderApp;
     
     
     myCylinder *cil;

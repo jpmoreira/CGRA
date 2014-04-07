@@ -79,8 +79,8 @@ void LightingScene::init()
 	light0->setAmbient(ambientNull);
 	light0->setSpecular(yellow);
     
-	//light0->enable();
-	light0->disable();
+	light0->enable();
+	//light0->disable();
     
 	light1 = new CGFlight(GL_LIGHT1, light1_pos);
 	light1->setAmbient(ambientNull);
@@ -91,7 +91,7 @@ void LightingScene::init()
 	light2 = new CGFlight(GL_LIGHT2, light2_pos);
 	light2->setAmbient(ambientNull);
 	
-	//light2->enable();
+	light2->enable();
 	//light2->disable();
     
 	light2->setKc(1);
@@ -103,8 +103,8 @@ void LightingScene::init()
 	light3->setAmbient(ambientNull);
 	//light3->setSpecular(yellow);
     
-	//light3->enable();
-	light3->disable();
+	light3->enable();
+	//light3->disable();
     
 	light3->setKc(0);
 	light3->setKl(0);
@@ -116,7 +116,7 @@ void LightingScene::init()
 	//Declares scene elements
 	table = new myTable();
 	wallLeft = new Plane();
-    wallLeft->enableClamp(0.35,0.23);
+    wallLeft->enableClamp(0.25,0.35);
     wallFront= new Plane();
     wallFront->enableRepeat(15, 15);
 	boardA = new Plane(BOARD_A_DIVISIONS);
@@ -125,16 +125,27 @@ void LightingScene::init()
 	//Declares materials
 	materialA = new CGFappearance(ambA,difA,specA,shininessA);
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
+    materialB->setTexture("board.png");
+    materialA->setTexture("slides.png");
+    boardA->enableClamp(0, 0);
+    boardB->enableClamp(0.15, 0);
+    materialA->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+    materialB->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+    
 	material_wallFront= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
     material_wallLeft= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
     material_floor->setTexture(floorTextureName);
     material_wallLeft->setTexture(windowTextureName);
-    material_wallLeft->setTextureWrap(GL_CLAMP, GL_CLAMP);
+    material_wallLeft->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
     
     
-    cil=new myCylinder(2,6);
+    cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
+    cilinderApp->setTexture("wall.png");
+    
+    cil=new myCylinder(2,12);
+    cil->enableRepeat(4, 12);
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     
@@ -197,8 +208,9 @@ void LightingScene::display()
      //LeftWall
      glPushMatrix();
      glTranslated(0,4,7.5);
+    glRotated(90.0, 1, 0, 0);
      glRotated(-90.0,0,0,1);
-     glScaled(8,0.2,15);
+     glScaled(15,0.2,8);
      material_wallLeft->apply();
      wallLeft->draw();
      glPopMatrix();
@@ -231,10 +243,11 @@ void LightingScene::display()
      boardB->draw();
      glPopMatrix();
      
-     
-     
     
-    //cil->draw();
+    glTranslated(14, 4, 14);
+    glScaled(1.5, 8, 1.5);
+    cilinderApp->apply();
+    cil->draw(1);
     //sphere->draw();
     
     //cube->draw();

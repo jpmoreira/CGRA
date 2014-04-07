@@ -10,7 +10,41 @@
 #include "coordinateSystems.h"
 
 
-myCylinder::myCylinder(int stackNr,int slicesNr):slices(slicesNr),stacks(stackNr){
+
+double myCylinder::sTexCord(double x){
+    
+    
+    if(this->clamp)return (x-this->dx*slices)/(slices*(1-2*this->dx));
+    return x*repX/slices;
+    
+    
+    
+}
+double myCylinder::tTexCord(double z){
+    
+    if(this->clamp)return (z-this->dy*stacks)/(stacks*(1-2*this->dy));
+    return z*repY/stacks;
+    
+}
+
+
+
+void myCylinder::enableClamp(double offsetY,double offsetX){
+    dx=offsetX;
+    dy=offsetY;
+    this->clamp=true;
+}
+
+
+void myCylinder::enableRepeat(double repeatsY,double repeatsX){
+    repX=repeatsX;
+    repY=repeatsY;
+    this->clamp=false;
+}
+
+
+
+myCylinder::myCylinder(int stackNr,int slicesNr):slices(slicesNr),stacks(stackNr),clamp(true){
 }
 
 void myCylinder::draw(int opt){
@@ -63,6 +97,8 @@ void myCylinder::drawRing(int stackNr){
 		cartNormal=cylindricalToCartesian(&cylNormal);
 
 		glNormal3d(cartNormal.x, cartNormal.y, cartNormal.z);
+        
+        
 		glVertex3d(cartPt1.x, cartPt1.y, cartPt1.z);
 		glVertex3d(cartPt2.x, cartPt1.y, cartPt2.z);
 		glVertex3d(cartPt2.x, cartPt2.y, cartPt2.z);
@@ -93,15 +129,22 @@ void myCylinder::drawRingVertex(int stackNr){
 		cartPt2=cylindricalToCartesian(&cylPt2);
 
 		glNormal3d(cartPt1.x, cartPt1.y, cartPt1.z);
+        glTexCoord2d(repX/slices*i, repY/stacks*stackNr);
 		glVertex3d(cartPt1.x, cartPt1.y, cartPt1.z);
 
 		glNormal3d(cartPt2.x, cartPt1.y, cartPt2.z);
+        
+        glTexCoord2d(repX/slices*(i+1), repY/stacks*stackNr);
 		glVertex3d(cartPt2.x, cartPt1.y, cartPt2.z);
 
 		glNormal3d(cartPt2.x, cartPt2.y, cartPt2.z);
+        
+        glTexCoord2d(repX/slices*(i+1), repY/stacks*(stackNr+1));
 		glVertex3d(cartPt2.x, cartPt2.y, cartPt2.z);
 
 		glNormal3d(cartPt1.x, cartPt2.y, cartPt1.z);
+        
+        glTexCoord2d(repX/slices*i, repY/stacks*(stackNr+1));
 		glVertex3d(cartPt1.x, cartPt2.y, cartPt1.z);
 
 

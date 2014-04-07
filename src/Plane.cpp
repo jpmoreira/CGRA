@@ -66,17 +66,17 @@ void Plane::draw()
 		for (int bx = 0; bx<_numDivisions; bx++)
 		{
 			glBegin(GL_TRIANGLE_STRIP);
-            glTexCoord2d(this->tTexCord(0),this->sTexCord(bx));
+            glTexCoord2d(this->sTexCord(bx),this->tTexCord(0));
 				glVertex3f(bx, 0, 0);
 				for (int bz = 0; bz<_numDivisions; bz++)
 				{
-                    glTexCoord2d(this->tTexCord(bz),this->sTexCord(bx+1));
+                    glTexCoord2d(this->sTexCord(bx+1),this->tTexCord(bz));
 					glVertex3f(bx + 1, 0, bz);
-                    glTexCoord2d(this->tTexCord(bz+1),this->sTexCord(bx) );
+                    glTexCoord2d(this->sTexCord(bx),this->tTexCord(bz+1) );
 					glVertex3f(bx, 0, bz + 1);
 				}
             
-                glTexCoord2d(this->tTexCord(_numDivisions),this->sTexCord(bx+1));
+                glTexCoord2d(this->sTexCord(bx+1),this->tTexCord(_numDivisions));
 
 				glVertex3d(bx+ 1, 0, _numDivisions);
 

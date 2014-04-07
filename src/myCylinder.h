@@ -21,7 +21,16 @@ class myCylinder: public CGFobject {
     int stacks,slices;
     void drawRing(int stackNr);
 	void drawRingVertex(int stackNr);
+    bool clamp;
+    double repX,repY;
+    double dx,dy;
+    
+    double sTexCord(double x);
+    double tTexCord(double z);
+
 public:
+    void enableClamp(double offsetY,double offsetX);
+    void enableRepeat(double repeatsY,double repeatsX);
     void draw(int opt);
     myCylinder(int stacksNr,int slicesNr);
 };
