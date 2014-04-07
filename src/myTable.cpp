@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 José Pedro Moreira. All rights reserved.
 //
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-#define PATH_TABLE_TEXTURE "C:\Users\Daniel\Documents\Visual Studio 2012\Projects\CGRA__DEV\Debug\table.png"
+#define PATH_TABLE_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\table.png"
 #else
 #define PATH_TABLE_TEXTURE "table.png"
 #endif

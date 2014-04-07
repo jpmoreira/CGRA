@@ -9,7 +9,7 @@
 #include "myUnitCube.h"
 #include "myLamp.h"
 
-#define CL_CLAMP_TO_EDGE 0x812F
+#define GL_CLAMP_TO_EDGE 0x812F
 
 class LightingScene : public CGFscene
 {
