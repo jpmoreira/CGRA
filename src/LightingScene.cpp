@@ -157,10 +157,13 @@ void LightingScene::init()
     cilinderApp->setTexture(PATH_WALL_TEXTURE);
     
     cil=new myCylinder(2,12);
+    cil->setTextures(cilinderApp, cilinderApp);
     cil->enableRepeat(4, 12);
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     
+    
+    clock=new myClock();
     
     
 
@@ -255,11 +258,16 @@ void LightingScene::display()
      boardB->draw();
      glPopMatrix();
      
-    
+    glPushMatrix();
     glTranslated(14, 4, 14);
     glScaled(1.5, 8, 1.5);
-    cilinderApp->apply();
     cil->draw(1);
+    
+    glPopMatrix();
+    
+    
+    glTranslated(3, 5, 3);
+    clock->draw();
     //sphere->draw();
     
     //cube->draw();
@@ -270,6 +278,7 @@ void LightingScene::display()
 	// while the graphics card is showing the contents of another buffer - the front buffer
 	// glutSwapBuffers() will swap pointers so that the back buffer becomes the front buffer and vice-versa
 	glutSwapBuffers();
+    
 
 }
 

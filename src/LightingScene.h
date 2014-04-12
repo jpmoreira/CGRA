@@ -5,9 +5,9 @@
 #include "CGFappearance.h"
 #include "myTable.h"
 #include "Plane.h"
-#include "myCylinder.h"
 #include "myUnitCube.h"
 #include "myLamp.h"
+#include "myClock.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
 
@@ -37,6 +37,7 @@ public:
     
     
     myCylinder *cil;
+    myClock *clock;
     
     mySemiSphere *sphere;
     

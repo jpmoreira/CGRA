@@ -50,9 +50,49 @@ myCylinder::myCylinder(int stackNr,int slicesNr):slices(slicesNr),stacks(stackNr
 void myCylinder::draw(int opt){
 
 
+      topText->apply();
+    glBegin(GL_TRIANGLE_FAN);
+    
+    glNormal3d(0, 1, 0);
+    glTexCoord2d(0.5, 0.5);
+    glVertex3d(0, 0.5, 0);
+    
+    CylindricalPoint pt;
+    CartesianPoint ptCart;
+    pt.y=0.5;
+    pt.r=0.5;
+    
+  
+    
+    for (int i=0; i<slices+1; i++) {
+        pt.rho=360./slices*(i-1/2.0);
+        ptCart=cylindricalToCartesian(&pt);
+        glTexCoord2d(-ptCart.x+0.5, ptCart.z+0.5);
+        glVertex3d(ptCart.x, ptCart.y, ptCart.z);
+        
+    }
+    
+    glEnd();
+    glBegin(GL_TRIANGLE_FAN);
+    pt.y=-0.5;
+    glNormal3d(0, -1, 0);
+    
+    for (int i=slices+1; i>=0; i--) {
+        pt.rho=360./slices*(i-1/2.0);
+        ptCart=cylindricalToCartesian(&pt);
+        glTexCoord2d(ptCart.x+0.5, ptCart.z+0.5);
+        glVertex3d(ptCart.x, ptCart.y, ptCart.z);
+        
+    }
+    
+    
+    glEnd();
+
+    sideText->apply();
 
 	glBegin(GL_QUADS);
-
+    
+  
 	if(opt == CENTERED_NORMALS)
 		for (int i=0; i<stacks; i++) {
 			this->drawRing(i);
@@ -83,8 +123,6 @@ void myCylinder::drawRing(int stackNr){
 	cylNormal.r=1.0;
 	CartesianPoint cartPt1,cartPt2,cartNormal;
 
-
-	//printf("Y= %f stackNr= %d conta= %f\n",cylPt1.y,stackNr,stackNr/(double)stacks);
 
 	for (int i=0; i<slices; i++) {
 
@@ -150,5 +188,13 @@ void myCylinder::drawRingVertex(int stackNr){
 
 
 	}
+
+}
+
+void myCylinder::setTextures(CGFappearance *top,CGFappearance *side){
+
+    
+    this->topText=top;
+    this->sideText=side;
 
 }

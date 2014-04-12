@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <CGFobject.h>
+#include <CGFappearance.h>
 
 #endif /* defined(__CGRA_1__myCylinder__) */
 
@@ -33,4 +34,10 @@ public:
     void enableRepeat(double repeatsY,double repeatsX);
     void draw(int opt);
     myCylinder(int stacksNr,int slicesNr);
+    void setTextures(CGFappearance *topText,CGFappearance *sideText);
+    
+protected:
+    CGFappearance *topText;
+    CGFappearance *sideText;
+    
 };
