@@ -37,6 +37,8 @@ myClock::myClock():clockBody(new myCylinder(1,12)){
 
 void myClock::draw(){
     
+	glScaled(1,-1, 0.1);
+	glRotated(90, 1, 0, 0);
     this->clockBody->draw(1);
 
 }

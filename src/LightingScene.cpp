@@ -266,10 +266,10 @@ void LightingScene::display()
     
     glPopMatrix();
     
+	clock_h_ex->draw();
     
     glTranslated(3, 5, 3);
     clock->draw();
-	clock_h_ex->draw();
     //sphere->draw();
     
     //cube->draw();
