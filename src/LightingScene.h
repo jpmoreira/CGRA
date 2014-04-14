@@ -38,6 +38,7 @@ public:
     
     myCylinder *cil;
     myClock *clock;
+	myClockHand *clock_h_ex;
     
     mySemiSphere *sphere;
     

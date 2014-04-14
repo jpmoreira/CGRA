@@ -11,11 +11,14 @@
 
 #include <iostream>
 #include "myCylinder.h"
+#include "myClockHand.h"
 
 class myClock: public CGFobject {
     
-    
     myCylinder * clockBody;
+	myClockHand *sec_hand;
+	myClockHand *min_hand;
+	myClockHand *hour_hand;
 public:
     void draw();
     myClock();

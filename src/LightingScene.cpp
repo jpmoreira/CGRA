@@ -164,6 +164,7 @@ void LightingScene::init()
     
     
     clock=new myClock();
+	clock_h_ex= new myClockHand();
     
     
 
@@ -268,6 +269,7 @@ void LightingScene::display()
     
     glTranslated(3, 5, 3);
     clock->draw();
+	clock_h_ex->draw();
     //sphere->draw();
     
     //cube->draw();
