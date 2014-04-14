@@ -9,11 +9,13 @@
 #define ARROW_HEIGHT 0.3
 
 class myClockHand: public CGFobject {
-	float angle;
+		float angle;
 public:
 	void setAngle(float degrees);
 	void draw();
+	float getAngle();
 	myClockHand();
+	myClockHand(float angle);
 };
 
 

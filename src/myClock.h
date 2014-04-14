@@ -16,12 +16,17 @@
 class myClock: public CGFobject {
     
     myCylinder * clockBody;
-	myClockHand *sec_hand;
-	myClockHand *min_hand;
-	myClockHand *hour_hand;
+	myClockHand * sec_hand;
+	myClockHand * min_hand;
+	myClockHand * hour_hand;
 public:
     void draw();
-    myClock();
+    float hoursToAngle(float hour);
+	float minsToAngle(float minutes);
+	float secsToAngle(float seconds);
+
+	myClock();
+	
 };
 
 

@@ -164,7 +164,8 @@ void LightingScene::init()
     
     
     clock=new myClock();
-	clock_h_ex= new myClockHand();
+	/*clock_h_ex= new myClockHand();
+	clock_h_ex->setAngle(90);*/
     
     
 
@@ -265,8 +266,6 @@ void LightingScene::display()
     cil->draw(1);
     
     glPopMatrix();
-    
-	clock_h_ex->draw();
     
     glTranslated(3, 5, 3);
     clock->draw();
