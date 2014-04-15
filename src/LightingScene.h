@@ -16,6 +16,7 @@ class LightingScene : public CGFscene
 public:
 	void init();
 	void display();
+	virtual void update(unsigned long milis);
     
 	CGFlight* light0;
 	CGFlight* light1;

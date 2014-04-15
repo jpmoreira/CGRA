@@ -70,6 +70,11 @@ float ambientNull[4]={0,0,0,1};
 float yellow[4]={1,1,0,1};
 
 
+
+void LightingScene::update(unsigned long milisec){
+	this->clock->update(milisec);
+}
+
 void LightingScene::init()
 {
     
@@ -161,18 +166,10 @@ void LightingScene::init()
     cil->enableRepeat(4, 12);
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
-    
-    
     clock=new myClock();
-	/*clock_h_ex= new myClockHand();
-	clock_h_ex->setAngle(90);*/
-    
-    
+	
 
-    
-    
-    
-    
+	setUpdatePeriod(100);    
 }
 
 void LightingScene::display()
@@ -267,7 +264,8 @@ void LightingScene::display()
     
     glPopMatrix();
     
-    glTranslated(3, 5, 3);
+    glTranslated(0.5, 5, 3);
+	glRotated(90, 0, 1, 0);
     clock->draw();
     //sphere->draw();
     

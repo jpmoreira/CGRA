@@ -21,21 +21,23 @@
 #define HOUR_HAND_WIDTH 0.1
 #define HOUR_HAND_HEIGHT 0.2
 
+#define DEGREES_PER_SEC 6
+#define DEGREES_PER_MIN 0.1
+
 class myClock: public CGFobject {
     
     myCylinder * clockBody;
 	myClockHand * sec_hand;
 	myClockHand * min_hand;
 	myClockHand * hour_hand;
+	unsigned long time;
 public:
     void draw();
 	void drawHands();
+	void update(unsigned long milisec);
     float hoursToAngle(float hour);
 	float minsToAngle(float minutes);
 	float secsToAngle(float seconds);
-	double getXscale(float width, float angle);
-	double getscale(float height, float angle);
-
 
 	myClock();
 	
