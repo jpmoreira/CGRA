@@ -14,7 +14,7 @@
 #define PATH_CLOCK_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\clock.png"
 #else
 
-#define PATH_CLOCK_TEXTURE "table.png"
+#define PATH_CLOCK_TEXTURE "clock.png"
 
 #endif
 

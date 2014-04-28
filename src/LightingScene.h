@@ -8,6 +8,7 @@
 #include "myUnitCube.h"
 #include "myLamp.h"
 #include "myClock.h"
+#include "myRobot.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
 
@@ -21,6 +22,9 @@ public:
 	CGFlight* light0;
 	CGFlight* light1;
 	CGFlight* light2;
+    myRobot * robot;
+    
+    
 	myLamp* light3;
     
 	myTable* table;
