@@ -167,7 +167,7 @@ void LightingScene::init()
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     clock=new myClock();
-    robot=new myRobot();
+    robot=new myRobot(4);
 	
 
 	setUpdatePeriod(100);    
