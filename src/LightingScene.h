@@ -17,37 +17,39 @@ class LightingScene : public CGFscene
 public:
 	void init();
 	void display();
+	void toggleSomething();
 	virtual void update(unsigned long milis);
-    
+
 	CGFlight* light0;
 	CGFlight* light1;
 	CGFlight* light2;
-    myRobot * robot;
-    
-    
+	myRobot * robot;
+
+
 	myLamp* light3;
-    
+
 	myTable* table;
 	Plane* wallLeft;
-    Plane* wallFront;
+	Plane* wallFront;
 	Plane* boardA;
 	Plane* boardB;
 	CGFappearance* materialA;
 	CGFappearance* materialB;
 	CGFappearance* material_floor;
 	CGFappearance* material_wallFront;
-    CGFappearance* material_wallLeft;
-    
-    CGFappearance* cilinderApp;
-    
-    
-    myCylinder *cil;
-    myClock *clock;
+	CGFappearance* material_wallLeft;
+	CGFappearance* cilinderApp;
+
+	GLUI_Panel* varPanel;
+	int sceneVar;
+
+	myCylinder *cil;
+	myClock *clock;
 	myClockHand *clock_h_ex;
-    
-    mySemiSphere *sphere;
-    
-    myUnitCube *cube;
+
+	mySemiSphere *sphere;
+
+	myUnitCube *cube;
 	~LightingScene();
 };
 
