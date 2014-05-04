@@ -20,8 +20,8 @@
 *.exe
 *.ilk
 *.lib
-*Debug/*
 *lib/*
 *CGRA__DEV/*
 *.opensdf
 *.unsuccessfulbuild
+*.lastcodeanalysissucceeded
