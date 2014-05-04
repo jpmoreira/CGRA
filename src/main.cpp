@@ -8,7 +8,6 @@
 
 #include "CGFapplication.h"
 #include "LightingScene.h"
-#include "TPinterface.h"
 
 using std::cout;
 using std::exception;
@@ -23,7 +22,6 @@ int main(int argc, char* argv[]) {
 
 		app.setScene(new LightingScene());
 		app.setInterface(new CGFinterface());
-		app.setInterface(new TPinterface());
 		
 		app.run();
 	}

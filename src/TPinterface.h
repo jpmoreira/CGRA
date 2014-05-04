@@ -2,7 +2,6 @@
 #define TPinterface_H
 
 #include "CGFinterface.h"
-#include "LightingScene.h" 
 
 class TPinterface: public CGFinterface {
 	public:

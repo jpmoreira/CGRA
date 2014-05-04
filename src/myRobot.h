@@ -9,8 +9,6 @@
 #ifndef __CGRA_1__myRobot__
 #define __CGRA_1__myRobot__
 
-#define _USE_MATH_DEFINES
-
 #include <iostream>
 #include "CGFobject.h"
 
@@ -18,26 +16,10 @@
 class myRobot: public CGFobject {
     
     int stacks;
-
-	/*double left_vertex[3];
-	double front_vertex[3];
-	double right_vertex[3];*/
-	//this arrays should be substituted by the robots square, center point coordinates.
-
-	double translate_coords[3];
-
-	double xz_rotate_degree;
-	double start_point[3];
-
     public:
+    void draw();
     myRobot(int stacksNr);
 	
-	void draw();
-	//void drawMovement();
-	void moveForward();
-	void moveBackward();
-	void rotateLeft();
-	void rotateRight();	
 };
 
 #endif /* defined(__CGRA_1__myRobot__) */
