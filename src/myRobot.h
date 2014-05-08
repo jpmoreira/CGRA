@@ -16,7 +16,14 @@
 class myRobot: public CGFobject {
     
     int stacks;
-    public:
+    double *xx;
+    double *zz;
+    double *yy;
+    double *xx_normal;
+    double *zz_normal;
+    void drawFace();
+    void populateArrays();
+public:
     void draw();
     myRobot(int stacksNr);
 	

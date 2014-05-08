@@ -167,7 +167,7 @@ void LightingScene::init()
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     clock=new myClock();
-    robot=new myRobot(4);
+    robot=new myRobot(100);
 	
 
 	setUpdatePeriod(100);    
@@ -271,12 +271,9 @@ void LightingScene::display()
 
     */
     
-    glPushMatrix();
+    
     robot->draw();
-    //glScaled(1, 1, -1);
-    glRotated(180, 0, 1, 0);
-    robot->draw();
-    glPopMatrix();
+    
 	// ---- END Primitive drawing section
   
     
