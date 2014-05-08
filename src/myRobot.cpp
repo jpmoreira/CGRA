@@ -7,6 +7,8 @@
 //
 
 #include "myRobot.h"
+#include <math.h>
+#include "coordinateSystems.h"
 
 void myRobot::draw(){
 
@@ -22,10 +24,26 @@ void myRobot::draw(){
 
 	glEnd();
 
+#pragma mark - Constructors
+myRobot::myRobot(int stackNr):
+stacks(stackNr),
+xx(new double[(stackNr+1)*5]),
+zz(new double[(stackNr+1)*5]),
+zz_normal(new double[(stackNr+1)*5]),
+xx_normal(new double[(stackNr+1)*5]),
+yy(new double[stackNr+1])
+{
+    
+   
+    
+    populateArrays();
 
+    
+    
 }
 
-myRobot::myRobot(int stackNr):stacks(stackNr){
+#pragma mark - Helper Methods
+
 
 
 	xz_rotate_degree = 0;
