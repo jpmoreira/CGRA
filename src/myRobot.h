@@ -18,17 +18,22 @@
 class myRobot: public CGFobject {
     
     int stacks;
-
-
-	double translate_coords[3];
-
+    double *xx;
+    double *zz;
+    double *yy;
+    double *xx_normal;
+    double *zz_normal;
+    
+    
+    double translate_coords[3];
 	double xz_rotate_degree;
 	double start_point[3];
-
-    public:
+    
+    void populateArrays();
+    void drawFace();
+public:
+    void draw();
     myRobot(int stacksNr);
-	
-	void draw();
 	void moveForward();
 	void moveBackward();
 	void rotateLeft();

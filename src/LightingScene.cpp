@@ -161,6 +161,19 @@ void LightingScene::init()
 	material_wallLeft->setTexture(PATH_WINDOW_TEXTURE);
 	material_wallLeft->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
+    
+    
+    cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
+    cilinderApp->setTexture(PATH_WALL_TEXTURE);
+    
+    cil=new myCylinder(2,12);
+    cil->setTextures(cilinderApp, cilinderApp);
+    cil->enableRepeat(4, 12);
+    sphere=new mySemiSphere(10,10);
+    cube=new myUnitCube();
+    clock=new myClock();
+    robot=new myRobot(100);
+	
 
 
 	cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
