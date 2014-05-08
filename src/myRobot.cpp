@@ -26,17 +26,7 @@ void myRobot::draw(){
 }
 
 myRobot::myRobot(int stackNr):stacks(stackNr){
-	/*left_vertex[0] = 0.5;
-	left_vertex[1] = 0.3;
-	left_vertex[2] = 0.0;
 
-	front_vertex[0] = 0.0;
-	front_vertex[1] = 0.3;
-	front_vertex[2] = 2.0;
-
-	right_vertex[0] = -0.5;
-	right_vertex[1] = 0.3;
-	right_vertex[2] = 0.0;*/
 
 	xz_rotate_degree = 0;
 
@@ -45,12 +35,6 @@ myRobot::myRobot(int stackNr):stacks(stackNr){
 	translate_coords[2] = 0;
 }
 
-//void myRobot::drawMovement(){
-//	glTranslated(translate_coords[0], 0 , translate_coords[2]);
-//	glRotated(xz_rotate_degree, 0, 1, 0);
-//	draw();
-//
-//}
 
 
 void myRobot::rotateRight(){

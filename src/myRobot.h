@@ -19,10 +19,6 @@ class myRobot: public CGFobject {
     
     int stacks;
 
-	/*double left_vertex[3];
-	double front_vertex[3];
-	double right_vertex[3];*/
-	//this arrays should be substituted by the robots square, center point coordinates.
 
 	double translate_coords[3];
 
@@ -33,7 +29,6 @@ class myRobot: public CGFobject {
     myRobot(int stacksNr);
 	
 	void draw();
-	//void drawMovement();
 	void moveForward();
 	void moveBackward();
 	void rotateLeft();

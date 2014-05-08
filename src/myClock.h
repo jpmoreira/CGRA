@@ -31,6 +31,7 @@ class myClock: public CGFobject {
 	myClockHand * min_hand;
 	myClockHand * hour_hand;
 	unsigned long time;
+	bool stopped;
 public:
     void draw();
 	void drawHands();
