@@ -14,6 +14,8 @@
 #include <iostream>
 #include "CGFobject.h"
 
+class CGFappearance;
+
 
 class myRobot: public CGFobject {
     
@@ -23,21 +25,27 @@ class myRobot: public CGFobject {
     double *yy;
     double *xx_normal;
     double *zz_normal;
+    CGFappearance *robotAppearance;
+    bool wireFrameMode;
+    
     
     
     double translate_coords[3];
 	double xz_rotate_degree;
 	double start_point[3];
-    
+    int textureNr;
     void populateArrays();
-    void drawFace();
+    void drawFace(int faceNr);
 public:
     void draw();
     myRobot(int stacksNr);
 	void moveForward();
 	void moveBackward();
 	void rotateLeft();
-	void rotateRight();	
+	void rotateRight();
+    void switchTexture(int nr);
+    static std::string nameForTexture(int nr);
+    void setWireframeMode(bool enabled);
 };
 
 #endif /* defined(__CGRA_1__myRobot__) */

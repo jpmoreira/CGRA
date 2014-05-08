@@ -9,61 +9,135 @@
 #include "myRobot.h"
 #include <math.h>
 #include "coordinateSystems.h"
+#include <CGFappearance.h>
+
+#define maxTextNr 4
+
+float robot_spec[4]={0.8,0.8,0.8,0.8};
+float robot_amb[4]={0.8,0.8,0.8,0.8};
+float robot_diff[4]={0.8,0.8,0.8,0.8};
+float robot_shininess=1.f;
 
 
 #pragma mark - Drawing Methods
 
 void myRobot::draw(){
     
+    GLint previousValues[2];
+    glGetIntegerv(GL_POLYGON_MODE, previousValues);
     
     
+    if (wireFrameMode) {
+        glPolygonMode(GL_FRONT, GL_LINE);
+        glPolygonMode(GL_BACK, GL_LINE);
+    }
+    robotAppearance->apply();
     glPushMatrix();
     
     glTranslated(translate_coords[0], 0 , translate_coords[2]);
 	glRotated(xz_rotate_degree, 0, 1, 0);
     
-    drawFace();
+    drawFace(0);
     
     glRotated(90, 0, 1, 0);
-    drawFace();
+    drawFace(1);
     
     glRotated(90, 0, 1, 0);
-    drawFace();
+    drawFace(2);
     
     glRotated(90, 0, 1, 0);
-    drawFace();
+    drawFace(3);
+
     
     glPopMatrix();
     
+    glPolygonMode(GL_FRONT, previousValues[0]);
+    glPolygonMode(GL_BACK, previousValues[1]);
+    
+    
 }
 
-void myRobot::drawFace(){
+void myRobot::drawFace(int faceNr){
     
     glBegin(GL_QUADS);
-    
+    //printf("Start\n");
+    int index1,index2,index3,index4;
     for (int line=0; line<stacks; line++) {
         for (int square=0; square<=3; square++) {
             
-            int index1=line*5+square;
-            int index2=line*5+square+1;
-            int index3=(line+1)*5+square+1;
-            int index4=(line+1)*5+square;
+            index1=line*5+square;
+            index2=line*5+square+1;
+            index3=(line+1)*5+square+1;
+            index4=(line+1)*5+square;
+            
+            if (faceNr==0) {
+                glTexCoord2d(xx[index1]+0.5, -zz[index1]+0.5);
+                //printf("x=%f y=%f\n",xx[index1]+0.5,zz[index1]+0.5);
+            }
+            else if (faceNr==1) {
+                glTexCoord2d(zz[index1]+0.5, xx[index1]+0.5);
+            }
+            else if (faceNr==2) {
+                glTexCoord2d(-xx[index1]+0.5, zz[index1]+0.5);
+            }
+            else{
+                glTexCoord2d(-zz[index1]+0.5, -xx[index1]+0.5);
+            }
+            
             
             glNormal3d(xx_normal[index1], 0, zz_normal[index1]);
             glVertex3d(xx[index1], yy[line], zz[index1]);
             
             //printf("x=%f y=%f z=%f\n",xx[index1], yy[line], zz[index1]);
             
+            if (faceNr==0) {
+                glTexCoord2d(xx[index2]+0.5, -zz[index2]+0.5);
+            }
+            else if (faceNr==1) {
+                glTexCoord2d(zz[index2]+0.5, xx[index2]+0.5);
+            }
+            else if (faceNr==2) {
+                glTexCoord2d(-xx[index2]+0.5, zz[index2]+0.5);
+            }
+            else{
+                glTexCoord2d(-zz[index2]+0.5, -xx[index2]+0.5);
+            }
             glNormal3d(xx_normal[index2], 0, zz_normal[index2]);
             glVertex3d(xx[index2], yy[line], zz[index2]);
             
             //printf("x=%f y=%f z=%f\n",xx[index2], yy[line], zz[index2]);
             
+            
+            if (faceNr==0) {
+                glTexCoord2d(xx[index3]+0.5, -zz[index3]+0.5);
+            }
+            else if (faceNr==1) {
+                glTexCoord2d(zz[index3]+0.5, xx[index3]+0.5);
+            }
+            else if (faceNr==2) {
+                glTexCoord2d(-xx[index3]+0.5, zz[index3]+0.5);
+            }
+            else{
+                glTexCoord2d(-zz[index3]+0.5, -xx[index3]+0.5);
+            }
             glNormal3d(xx_normal[index3], 0, zz_normal[index3]);
             glVertex3d(xx[index3], yy[line+1], zz[index3]);
             
             //printf("x=%f y=%f z=%f\n",xx[index3], yy[line+1], zz[index3]);
             
+            
+            if (faceNr==0) {
+                glTexCoord2d(xx[index4]+0.5, -zz[index4]+0.5);
+            }
+            else if (faceNr==1) {
+                glTexCoord2d(zz[index4]+0.5, xx[index4]+0.5);
+            }
+            else if (faceNr==2) {
+                glTexCoord2d(-xx[index4]+0.5, zz[index4]+0.5);
+            }
+            else{
+                glTexCoord2d(-zz[index4]+0.5, -xx[index4]+0.5);
+            }
             glNormal3d(xx_normal[index4], 0, zz_normal[index4]);
             glVertex3d(xx[index4], yy[line+1], zz[index4]);
             
@@ -87,12 +161,16 @@ xx(new double[(stackNr+1)*5]),
 zz(new double[(stackNr+1)*5]),
 zz_normal(new double[(stackNr+1)*5]),
 xx_normal(new double[(stackNr+1)*5]),
-yy(new double[stackNr+1])
+yy(new double[stackNr+1]),
+robotAppearance(new CGFappearance(robot_amb,robot_diff,robot_spec,robot_shininess)),
+textureNr(1),
+wireFrameMode(false)
 {
     
-   
-    
+    std::cout<<myRobot::nameForTexture(1);
+    robotAppearance->setTexture(myRobot::nameForTexture(textureNr));
     populateArrays();
+
 
     
     
@@ -173,3 +251,29 @@ void myRobot::moveBackward(){
 	translate_coords[0] -= 0.3 * sin(xz_rotate_degree*M_PI/180.0);
 	translate_coords[2] -= 0.3 * cos(xz_rotate_degree*M_PI/180.0);
 }
+
+string myRobot::nameForTexture(int nr){
+    
+    if (nr>maxTextNr) {
+        nr=maxTextNr;
+    }
+    
+    string name="robot"+to_string(nr)+".jpg";
+    
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
+    name="C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\"+name;
+#endif
+    
+    return name;
+}
+
+#pragma mark - Methods for GUI
+
+void myRobot::setWireframeMode(bool enabled){
+    wireFrameMode=enabled;
+}
+
+void myRobot::switchTexture(int nr){
+    robotAppearance->setTexture(myRobot::nameForTexture(nr));
+}
+
