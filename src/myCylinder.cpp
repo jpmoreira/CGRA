@@ -53,7 +53,7 @@ void myCylinder::draw(int opt){
       topText->apply();
     glBegin(GL_TRIANGLE_FAN);
     
-    glNormal3d(0, 1, 0);
+    glNormal3d(0, -1, 0);
     glTexCoord2d(0.5, 0.5);
     glVertex3d(0, 0.5, 0);
     
@@ -75,7 +75,7 @@ void myCylinder::draw(int opt){
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
     pt.y=-0.5;
-    glNormal3d(0, -1, 0);
+    glNormal3d(0, 1, 0);
     
     for (int i=slices+1; i>=0; i--) {
         pt.rho=360./slices*(i-1/2.0);

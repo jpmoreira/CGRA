@@ -79,6 +79,10 @@ void LightingScene::init()
 {
 
 	sceneVar=0;
+	enable_light1=0;
+	enable_light2=0;
+	enable_light3=0;
+	enable_light0=0;
 	//glShadeModel(GL_SMOOTH);
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
@@ -95,22 +99,23 @@ void LightingScene::init()
 
 	light0 = new CGFlight(GL_LIGHT0, light0_pos);
 	light0->setAmbient(ambientNull);
-	light0->setSpecular(yellow);
+	//light0->setSpecular(yellow);
 
-	light0->enable();
-	//light0->disable();
+	light0->disable();
 
 	light1 = new CGFlight(GL_LIGHT1, light1_pos);
 	light1->setAmbient(ambientNull);
 
-	light1->enable();
-	//light1->disable();
+	light1->disable();
+	light1->setKc(1);
+	light1->setKl(0);
+	light1->setKq(0);
+
 
 	light2 = new CGFlight(GL_LIGHT2, light2_pos);
 	light2->setAmbient(ambientNull);
 
-	light2->enable();
-	//light2->disable();
+	light2->disable();
 
 	light2->setKc(1);
 	light2->setKl(0);
@@ -119,10 +124,9 @@ void LightingScene::init()
 
 	light3 = new myLamp(10,10,GL_LIGHT3, light3_pos);
 	light3->setAmbient(ambientNull);
-	//light3->setSpecular(yellow);
 
-	light3->enable();
-	//light3->disable();
+
+	light3->disable();
 
 	light3->setKc(0);
 	light3->setKl(0);
@@ -266,9 +270,11 @@ void LightingScene::display()
 	//   
 	//   glPopMatrix();
 	//   
-	//   glTranslated(0.5, 5, 3);
-	//glRotated(90, 0, 1, 0);
-	//   clock->draw();
+	glPushMatrix();
+	glTranslated(0.5, 5, 3);
+	glRotated(90, 0, 1, 0);
+	clock->draw();
+	glPopMatrix();
 
 
 	//
@@ -303,4 +309,38 @@ LightingScene::~LightingScene()
 
 void LightingScene::toggleSomething(){
 	cout<<"key pressed"<<endl;
+}
+
+void LightingScene::changeLight(int light){
+
+	switch (light)
+	{
+	case LIGHT0:
+		if(enable_light0 > 0)
+			light0->enable();
+		else
+			light0->disable();
+		break;
+	case LIGHT1:
+		if(enable_light1 > 0)
+			light1->enable();
+		else
+			light1->disable();
+		break;
+	case LIGHT2:
+		if(enable_light2 > 0)
+			light2->enable();
+		else
+			light2->disable();
+		break;
+	case LIGHT3:
+		if(enable_light3 > 0)
+			light3->enable();
+		else
+			light3->disable();
+		break;
+
+	default:
+		break;
+	}
 }
