@@ -11,12 +11,18 @@
 #include "myRobot.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
+#define CLOCK_UPDATE 1
+#define LIGHT0 10
+#define LIGHT1 11
+#define LIGHT2 12
+#define LIGHT3 13
 
 class LightingScene : public CGFscene
 {
 public:
 	void init();
 	void display();
+	void changeLight(int light);
 	void toggleSomething();
 	virtual void update(unsigned long milis);
 
@@ -26,7 +32,7 @@ public:
 	myRobot * robot;
 
 
-	myLamp* light3;
+	CGFlight* light3;
 
 	myTable* table;
 	Plane* wallLeft;
@@ -42,6 +48,11 @@ public:
 
 	GLUI_Panel* varPanel;
 	int sceneVar;
+	int enable_light0;
+	int enable_light1;
+	int enable_light2;
+	int enable_light3;
+	int activate_clock;
 
 	myCylinder *cil;
 	myClock *clock;
@@ -51,6 +62,8 @@ public:
 
 	myUnitCube *cube;
 	~LightingScene();
+
+
 };
 
 #endif

@@ -35,7 +35,7 @@ void TPinterface::processKeyboard(unsigned char key, int x, int y)
 			((LightingScene *) scene)->robot->rotateLeft();
 			break;
 		}
-			case 'i':
+	case 'i':
 		{
 			// This is an example of accessing the associated scene
 			// To test, create the function toggleSomething in your scene to activate/deactivate something
@@ -43,7 +43,7 @@ void TPinterface::processKeyboard(unsigned char key, int x, int y)
 			break;
 		}
 
-			case 'k':
+	case 'k':
 		{
 			// This is an example of accessing the associated scene
 			// To test, create the function toggleSomething in your scene to activate/deactivate something
@@ -58,12 +58,15 @@ void TPinterface::initGUI()
 {
 	// Check CGFinterface.h and GLUI documentation for the types of controls available
 	GLUI_Panel *varPanel= addPanel("Lights", 1);
-	addCheckboxToPanel(varPanel, "Light 1", 0, 1);
+	addCheckboxToPanel(varPanel, "Light 0", &(((LightingScene*) scene)->enable_light0), LIGHT0);
+	addCheckboxToPanel(varPanel, "Light 1", &(((LightingScene*) scene)->enable_light1), LIGHT1);
+	addCheckboxToPanel(varPanel, "Light 2", &(((LightingScene*) scene)->enable_light2), LIGHT2);
+	addCheckboxToPanel(varPanel, "Light 3", &(((LightingScene*) scene)->enable_light3), LIGHT3);
 	addSeparatorToPanel(varPanel);
-	addSpinnerToPanel(varPanel, "Val 1(interface)", 2, &testVar, 1);
+	GLUI_Panel * clock_pan = addPanel("Clock Control", 1);
+	addButtonToPanel(clock_pan, "Stop/Start", CLOCK_UPDATE);
 
-	// You could also pass a reference to a variable from the scene class, if public
-	addSpinnerToPanel(varPanel, "Val 2(scene)", 2, &(((LightingScene*) scene)->sceneVar), 2);
+
 
 }
 
@@ -72,17 +75,22 @@ void TPinterface::processGUI(GLUI_Control *ctrl)
 	printf ("GUI control id: %d\n  ",ctrl->user_id);
 	switch (ctrl->user_id)
 	{
-	case 1:
-		{
-			printf ("New Val 1(interface): %d\n",testVar);
-			break;
-		};
-
-	case 2:
-		{
-			printf ("New Val 2(scene): %d\n",((LightingScene*) scene)->sceneVar);
-			break;
-		};
+	case CLOCK_UPDATE:
+		((LightingScene*) scene)->clock->updateStopped();
+		break;
+	case LIGHT0:
+		((LightingScene*) scene)->changeLight(LIGHT0);
+		break;
+	case LIGHT1:
+		((LightingScene*) scene)->changeLight(LIGHT1);
+		break;
+	case LIGHT2:
+		((LightingScene*) scene)->changeLight(LIGHT2);
+		break;
+	case LIGHT3:
+		((LightingScene*) scene)->changeLight(LIGHT3);
+		break;
 	};
+
 }
 

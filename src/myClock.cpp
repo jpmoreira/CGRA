@@ -39,6 +39,10 @@ float myClock::secsToAngle(float secs){
 	return 6.0 * secs;
 } 
 
+void myClock::updateStopped(){
+	stopped = !stopped;
+}
+
 myClock::myClock():clockBody(new myCylinder(1,12)),hour_hand(new myClockHand(HOUR_HAND_HEIGHT, HOUR_HAND_WIDTH)),
 	min_hand(new myClockHand(MIN_HAND_HEIGHT, MIN_HAND_WIDTH)),sec_hand(new myClockHand(SEC_HAND_HEIGHT, SEC_HAND_WIDTH))
 	, time(0), stopped(false){

@@ -36,6 +36,7 @@ public:
     void draw();
 	void drawHands();
 	void update(unsigned long milisec);
+	void updateStopped();
     float hoursToAngle(float hour);
 	float minsToAngle(float minutes);
 	float secsToAngle(float seconds);
