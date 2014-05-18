@@ -10,6 +10,7 @@
 #include <math.h>
 #include "coordinateSystems.h"
 #include <CGFappearance.h>
+#include "myUnitCube.h"
 
 #define maxTextNr 4
 
@@ -48,17 +49,20 @@ void myRobot::draw(){
     glRotated(90, 0, 1, 0);
     drawFace(3);
 
+
+
     
     glPopMatrix();
     
     glPolygonMode(GL_FRONT, previousValues[0]);
     glPolygonMode(GL_BACK, previousValues[1]);
     
-    
+
 }
 
 void myRobot::drawFace(int faceNr){
-    
+	
+	
     glBegin(GL_QUADS);
     //printf("Start\n");
     int index1,index2,index3,index4;
@@ -71,7 +75,7 @@ void myRobot::drawFace(int faceNr){
             index4=(line+1)*5+square;
             
             if (faceNr==0) {
-                glTexCoord2d(xx[index1]+0.5, -zz[index1]+0.5);
+                glTexCoord2d(xx[index1]+0.5, -zz[index1]+0.5); // 0 0
                 //printf("x=%f y=%f\n",xx[index1]+0.5,zz[index1]+0.5);
             }
             else if (faceNr==1) {
@@ -86,12 +90,13 @@ void myRobot::drawFace(int faceNr){
             
             
             glNormal3d(xx_normal[index1], 0, zz_normal[index1]);
+			//printf("1:\nxnormal=%f\n ynormal=%f\n znormal=%f\n",xx_normal[index1], 0.0, zz_normal[index1]);
             glVertex3d(xx[index1], yy[line], zz[index1]);
             
             //printf("x=%f y=%f z=%f\n",xx[index1], yy[line], zz[index1]);
             
             if (faceNr==0) {
-                glTexCoord2d(xx[index2]+0.5, -zz[index2]+0.5);
+                glTexCoord2d(xx[index2]+0.5, -zz[index2]+0.5); //1 0
             }
             else if (faceNr==1) {
                 glTexCoord2d(zz[index2]+0.5, xx[index2]+0.5);
@@ -103,6 +108,7 @@ void myRobot::drawFace(int faceNr){
                 glTexCoord2d(-zz[index2]+0.5, -xx[index2]+0.5);
             }
             glNormal3d(xx_normal[index2], 0, zz_normal[index2]);
+			//printf("2:\nxnormal=%f\n ynormal=%f\n znormal=%f\n",xx_normal[index2], 0.0, zz_normal[index2]);
             glVertex3d(xx[index2], yy[line], zz[index2]);
             
             //printf("x=%f y=%f z=%f\n",xx[index2], yy[line], zz[index2]);
@@ -121,6 +127,7 @@ void myRobot::drawFace(int faceNr){
                 glTexCoord2d(-zz[index3]+0.5, -xx[index3]+0.5);
             }
             glNormal3d(xx_normal[index3], 0, zz_normal[index3]);
+			//printf("3:\nxnormal=%f\n ynormal=%f\n znormal=%f\n",xx_normal[index3], 0.0, zz_normal[index3]);
             glVertex3d(xx[index3], yy[line+1], zz[index3]);
             
             //printf("x=%f y=%f z=%f\n",xx[index3], yy[line+1], zz[index3]);
@@ -139,6 +146,7 @@ void myRobot::drawFace(int faceNr){
                 glTexCoord2d(-zz[index4]+0.5, -xx[index4]+0.5);
             }
             glNormal3d(xx_normal[index4], 0, zz_normal[index4]);
+			//printf("4:\nxnormal=%f\n ynormal=%f\n znormal=%f\n",xx_normal[index4], 0.0, zz_normal[index4]);
             glVertex3d(xx[index4], yy[line+1], zz[index4]);
             
             //printf("x=%f y=%f z=%f\n",xx[index4], yy[line+1], zz[index4]);
@@ -164,16 +172,15 @@ xx_normal(new double[(stackNr+1)*5]),
 yy(new double[stackNr+1]),
 robotAppearance(new CGFappearance(robot_amb,robot_diff,robot_spec,robot_shininess)),
 textureNr(1),
-wireFrameMode(false)
+wireFrameMode(false),
+xz_rotate_degree(0)
 {
     
     std::cout<<myRobot::nameForTexture(1);
     robotAppearance->setTexture(myRobot::nameForTexture(textureNr));
     populateArrays();
-
-
-    
-    
+	translate_coords[0] = translate_coords[1]= translate_coords[2]= 0;
+	
 }
 
 #pragma mark - Helper Methods
@@ -186,7 +193,7 @@ void myRobot::populateArrays(){
         //printf(" yy= %f",yy[h]);
         for (int i=0; i<5; i++) {
             
-            double angle=90.0/4.0*i-45.0;
+            double angle=90.0/4.0*i-45.0; //explicar
             double zOnBase=0.5;
             double xOnBase=tan(angle * M_PI / 180.0)/2;
             
@@ -219,6 +226,9 @@ void myRobot::populateArrays(){
             
             zz_normal[h*5+i]/=norm;
             xx_normal[h*5+i]/=norm;
+			
+			//printf("populate x+z: %f\n", sqrt(zz_normal[h*5+i]*zz_normal[h*5+i]+ xx_normal[h*5+i]*xx_normal[h*5+i]));
+
             
             
         }
@@ -257,13 +267,15 @@ string myRobot::nameForTexture(int nr){
     if (nr>maxTextNr) {
         nr=maxTextNr;
     }
+
     
     string name="robot"+to_string(nr)+".jpg";
     
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
     name="C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\"+name;
 #endif
-    
+	
+	std::cout<<"texture name: "<<name<<endl;
     return name;
 }
 
@@ -275,5 +287,10 @@ void myRobot::setWireframeMode(bool enabled){
 
 void myRobot::switchTexture(int nr){
     robotAppearance->setTexture(myRobot::nameForTexture(nr));
+	std::cout<<"setTexture "<< myRobot::nameForTexture(nr)<<endl;
 }
 
+
+void myRobot::changeWireframe(){
+		wireFrameMode = !wireFrameMode;
+}

@@ -16,6 +16,8 @@
 #define LIGHT1 11
 #define LIGHT2 12
 #define LIGHT3 13
+#define ROBOT_WIREFRAME 20
+#define ROBOT_TEXTURE 30
 
 class LightingScene : public CGFscene
 {
@@ -53,6 +55,7 @@ public:
 	int enable_light2;
 	int enable_light3;
 	int activate_clock;
+	int robot_wiframe;
 
 	myCylinder *cil;
 	myClock *clock;
