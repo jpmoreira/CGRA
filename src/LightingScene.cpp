@@ -12,22 +12,6 @@ float deg2rad=pi/180.0;
 #define BOARD_HEIGHT 6.0
 #define BOARD_WIDTH 6.4
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-#define PATH_WALL_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\wall.png"
-#define PATH_FLOOR_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\floor.png"
-#define PATH_SLIDES_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\slides.png"
-#define PATH_BOARD_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\board.png"
-#define PATH_WINDOW_TEXTURE "C:\\Users\\Daniel\\Documents\\Visual Studio 2012\\Projects\\CGRA__DEV\\Debug\\window.png"
-#else
-#define PATH_WALL_TEXTURE "wall.png"
-#define PATH_FLOOR_TEXTURE "floor.png"
-#define PATH_SLIDES_TEXTURE "slides.png"
-#define PATH_BOARD_TEXTURE "board.png"
-#define PATH_WINDOW_TEXTURE "window.png"
-
-#define PATH_LANDSCAPE_TEXTURE "paisagem.jpeg"
-
-#endif
 
 // Positions for two lights
 float light0_pos[4] = {4, 6.0, 1.0, 1.0};

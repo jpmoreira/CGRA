@@ -7,6 +7,7 @@
 //
 
 #include "myHoleWall.h"
+#include "LightingScene.h"
 #include <CGFappearance.h>
 #define sidePart (1.2/3.)//part of the plane occupied by the left part
 #define topPart (1/4.)//part of the plane occupied by the top part
@@ -36,7 +37,7 @@ wallApp(new CGFappearance(holeWall_amb,holeWall_diff,holeWall_spec,holeWall_shin
     right.addOffset(0, 1.46);
     
     //top.addOffset(0.0, 1.0);
-    wallApp->setTexture("window.png");
+    wallApp->setTexture(PATH_WINDOW_TEXTURE);
     wallApp->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
 }
