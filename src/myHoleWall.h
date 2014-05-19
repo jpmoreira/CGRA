@@ -10,10 +10,12 @@
 #define __CGRA_1__myHoleWall__
 
 #include "Plane.h"
+class CGFappearance;
 class myHoleWall: public CGFobject {
     
     
     Plane left,right,top,down;
+    CGFappearance *wallApp;
     
 public:
     void draw();

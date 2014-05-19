@@ -6,17 +6,20 @@
 double Plane::sTexCord(double x){
     
     
-    if(this->clamp )return (x-this->dx*_numDivisions)/(_numDivisions*(1-2*this->dx));
+    double nr;
+    if(this->clamp )nr= ((x-this->dx*_numDivisions)/(_numDivisions*(1-2*this->dx)))+offsetX;
     
     
-    return x*repX/_numDivisions;
+    else nr=x*repX/_numDivisions;
+    
+    return nr;
     
     
     
 }
 double Plane::tTexCord(double z){
     
-    if(this->clamp )return (z-this->dy*_numDivisions)/(_numDivisions*(1-2*this->dy));
+    if(this->clamp )return ((z-this->dy*_numDivisions)/(_numDivisions*(1-2*this->dy)))+offsetY;
     
     
     return z*repY/_numDivisions;
@@ -38,8 +41,8 @@ void Plane::enableRepeat(double repeatsY,double repeatsX){
 }
 
 void Plane::addOffset(double offY,double offX){
-    offsetX=offsetX;
-    offsetY=offsetY;
+    offsetX=offX;
+    offsetY=offY;
     this->clamp=true;
 
 }

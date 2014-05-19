@@ -25,6 +25,8 @@ float deg2rad=pi/180.0;
 #define PATH_BOARD_TEXTURE "board.png"
 #define PATH_WINDOW_TEXTURE "window.png"
 
+#define PATH_LANDSCAPE_TEXTURE "paisagem.jpeg"
+
 #endif
 
 // Positions for two lights
@@ -138,7 +140,7 @@ void LightingScene::init()
 	//Declares scene elements
 	table = new myTable();
 	wallLeft = new Plane();
-	wallLeft->enableCentered(0.25,0.35);
+	wallLeft->enableCentered(0.0,0.0);
 	wallFront= new Plane();
 	wallFront->enableRepeat(15, 15);
 	boardA = new Plane(BOARD_A_DIVISIONS);
@@ -158,7 +160,7 @@ void LightingScene::init()
 	material_wallLeft= new CGFappearance(amb_wall, dif_wall, spec_wall, shininess_wall);
 	material_floor= new CGFappearance(amb_floor, dif_floor, spec_floor, shininess_floor);
 	material_floor->setTexture(PATH_FLOOR_TEXTURE);
-	material_wallLeft->setTexture(PATH_WINDOW_TEXTURE);
+	material_wallLeft->setTexture(PATH_LANDSCAPE_TEXTURE);
 	material_wallLeft->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
     
@@ -239,15 +241,15 @@ void LightingScene::display()
 	//    wallFront->draw();
 	//    glPopMatrix();
 	//    
-	//    //LeftWall
-	//    glPushMatrix();
-	//    glTranslated(0,4,7.5);
-	//   glRotated(90.0, 1, 0, 0);
-	//    glRotated(-90.0,0,0,1);
-	//    glScaled(15,0.2,8);
-	//    material_wallLeft->apply();
-	//    wallLeft->draw();
-	//    glPopMatrix();
+	    //LeftWall
+	    glPushMatrix();
+	    glTranslated(-10,5,8.5);
+	   glRotated(90.0, 1, 0, 0);
+	    glRotated(-90.0,0,0,1);
+	    glScaled(17,0.2,10);
+	    material_wallLeft->apply();
+	    wallLeft->draw();
+	    glPopMatrix();
 	//    
 	//    //PlaneWall
 	//    glPushMatrix();
@@ -293,10 +295,13 @@ void LightingScene::display()
 
 	//
 	glPushMatrix();
-	robot->draw();
+	//robot->draw();
 	glPopMatrix();
-    
-    //holeWall->draw();
+    glPushMatrix();
+    glTranslated(0, 4, 7.5);
+    glScaled(1, 8, 15);
+    holeWall->draw();
+    glPopMatrix();
 	// ---- END Primitive drawing section
 
 
