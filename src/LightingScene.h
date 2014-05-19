@@ -4,11 +4,11 @@
 #include "CGFscene.h"
 #include "CGFappearance.h"
 #include "myTable.h"
-#include "Plane.h"
 #include "myUnitCube.h"
 #include "myLamp.h"
 #include "myClock.h"
 #include "myRobot.h"
+#include "myHoleWall.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
 #define CLOCK_UPDATE 1
@@ -45,6 +45,8 @@ public:
 	CGFappearance* material_wallFront;
 	CGFappearance* material_wallLeft;
 	CGFappearance* cilinderApp;
+    
+    myHoleWall *holeWall;
 
 	GLUI_Panel* varPanel;
 	int sceneVar;

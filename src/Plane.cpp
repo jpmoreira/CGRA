@@ -6,7 +6,9 @@
 double Plane::sTexCord(double x){
     
     
-    if(this->clamp)return (x-this->dx*_numDivisions)/(_numDivisions*(1-2*this->dx));
+    if(this->clamp )return (x-this->dx*_numDivisions)/(_numDivisions*(1-2*this->dx));
+    
+    
     return x*repX/_numDivisions;
     
     
@@ -14,23 +16,35 @@ double Plane::sTexCord(double x){
 }
 double Plane::tTexCord(double z){
     
-    if(this->clamp)return (z-this->dy*_numDivisions)/(_numDivisions*(1-2*this->dy));
+    if(this->clamp )return (z-this->dy*_numDivisions)/(_numDivisions*(1-2*this->dy));
+    
+    
     return z*repY/_numDivisions;
     
 }
 
 
 
-void Plane::enableClamp(double offsetY,double offsetX){
-    dx=offsetX;
-    dy=offsetY;
+void Plane::enableCentered(double d_y,double d_x){
+    dx=d_x;
+    dy=d_y;
     this->clamp=true;
+
 }
 void Plane::enableRepeat(double repeatsY,double repeatsX){
     repX=repeatsX;
     repY=repeatsY;
     this->clamp=false;
 }
+
+void Plane::addOffset(double offY,double offX){
+    offsetX=offsetX;
+    offsetY=offsetY;
+    this->clamp=true;
+
+}
+
+
 
 
 
@@ -40,14 +54,18 @@ Plane::Plane()
     this->clamp=false;
     repX=1;
     repY=1;
+    this->offsetX=0;
+    this->offsetY=0;
 }
 
 Plane::Plane(int n)
 {
 	_numDivisions = n;
     this->clamp=false;
-    repX=1;
-    repX=1;
+    repX=n;
+    repY=n;
+    this->offsetX=0;
+    this->offsetY=0;
 }
 
 

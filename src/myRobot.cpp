@@ -167,7 +167,7 @@ textureNr(1),
 wireFrameMode(false)
 {
     
-    std::cout<<myRobot::nameForTexture(1);
+    //std::cout<<myRobot::nameForTexture(1);
     robotAppearance->setTexture(myRobot::nameForTexture(textureNr));
     populateArrays();
 

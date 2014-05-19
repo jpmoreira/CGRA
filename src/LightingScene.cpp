@@ -83,7 +83,7 @@ void LightingScene::init()
 	enable_light2=0;
 	enable_light3=0;
 	enable_light0=0;
-	//glShadeModel(GL_SMOOTH);
+	glShadeModel(GL_SMOOTH);
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
 
@@ -138,7 +138,7 @@ void LightingScene::init()
 	//Declares scene elements
 	table = new myTable();
 	wallLeft = new Plane();
-	wallLeft->enableClamp(0.25,0.35);
+	wallLeft->enableCentered(0.25,0.35);
 	wallFront= new Plane();
 	wallFront->enableRepeat(15, 15);
 	boardA = new Plane(BOARD_A_DIVISIONS);
@@ -149,8 +149,8 @@ void LightingScene::init()
 	materialB = new CGFappearance(ambB,difB,specB,shininessB);
 	materialB->setTexture(PATH_BOARD_TEXTURE);
 	materialA->setTexture(PATH_SLIDES_TEXTURE);
-	boardA->enableClamp(0, 0);
-	boardB->enableClamp(0.15, 0);
+	boardA->enableCentered(0, 0);
+	boardB->enableCentered(0.15, 0);
 	materialA->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 	materialB->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
@@ -163,7 +163,7 @@ void LightingScene::init()
 
     
     
-    cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
+   /* cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
     cilinderApp->setTexture(PATH_WALL_TEXTURE);
     
     cil=new myCylinder(2,12);
@@ -172,7 +172,7 @@ void LightingScene::init()
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     clock=new myClock();
-    robot=new myRobot(100);
+    robot=new myRobot(100);*/
 	
 
 
@@ -185,7 +185,8 @@ void LightingScene::init()
 	sphere=new mySemiSphere(10,10);
 	cube=new myUnitCube();
 	clock=new myClock();
-	robot=new myRobot(4);
+	robot=new myRobot(100);
+    holeWall=new myHoleWall(10);
 
 
 	setUpdatePeriod(100);    
@@ -294,6 +295,8 @@ void LightingScene::display()
 	glPushMatrix();
 	robot->draw();
 	glPopMatrix();
+    
+    //holeWall->draw();
 	// ---- END Primitive drawing section
 
 
