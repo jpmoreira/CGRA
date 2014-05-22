@@ -63,6 +63,7 @@ void TPinterface::initGUI()
 	addCheckboxToPanel(varPanel, "Light 2", &(((LightingScene*) scene)->enable_light2), LIGHT2);
 	addCheckboxToPanel(varPanel, "Light 3", &(((LightingScene*) scene)->enable_light3), LIGHT3);
 
+
 	glui_window->add_column(false);
 	GLUI_Panel *texture_pan = addPanel("Texture", 1);
 	GLUI_Listbox *textures;
@@ -90,8 +91,8 @@ void TPinterface::initGUI()
 
 void TPinterface::processGUI(GLUI_Control *ctrl)
 {
-	printf ("GUI control id: %d\n  ",ctrl->user_id);
-	string robot_texture;
+	//printf ("GUI control id: %d\n  ",ctrl->user_id);
+	//string robot_texture;
 	switch (ctrl->user_id)
 	{
 	case CLOCK_UPDATE:
@@ -114,6 +115,7 @@ void TPinterface::processGUI(GLUI_Control *ctrl)
 		break;
 	case ROBOT_TEXTURE:
 		((LightingScene*) scene)->robot->switchTexture(var_textures);
+	//	std::cout<<"var_textures: "<<var_textures<<endl;
 		break;
 	};
 

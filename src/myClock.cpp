@@ -21,8 +21,8 @@
 
 float amb[3]={0.2,0.2,0.2};
 float dif[3]={0.6,0.6,0.6};
-float spec[3]={0.8,0.8,0.8};
-float shininess=40.0f;
+float spec[3]={0.3,0.3,0.3};
+float shininess=20.0f;
 
 
 float myClock::hoursToAngle(float hour){

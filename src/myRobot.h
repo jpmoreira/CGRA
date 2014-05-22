@@ -20,20 +20,22 @@ class CGFappearance;
 class myRobot: public CGFobject {
     
     int stacks;
+	int appearence;
     double *xx;
     double *zz;
     double *yy;
     double *xx_normal;
     double *zz_normal;
     CGFappearance *robotAppearance;
+	CGFappearance *robotAppearance2;
+	CGFappearance *robotAppearance3;
+
     bool wireFrameMode;
-    
     
     
 	double translate_coords[3];
 	double xz_rotate_degree;
 	double start_point[3];
-    int textureNr;
     void populateArrays();
     void drawFace(int faceNr);
 public:
