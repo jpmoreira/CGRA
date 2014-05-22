@@ -14,39 +14,24 @@ void TPinterface::processKeyboard(unsigned char key, int x, int y)
 
 	switch(key)
 	{
-	case 'a':
-		{
-			// This is an example of accessing the associated scene
-			// To test, create the function toggleSomething in your scene to activate/deactivate something
-			((LightingScene *) scene)->toggleSomething();
-			break;
-		}
 	case 'j':
 		{
-			// This is an example of accessing the associated scene
-			// To test, create the function toggleSomething in your scene to activate/deactivate something
 			((LightingScene *) scene)->robot->rotateRight();
 			break;
 		}
 	case 'l':
 		{
-			// This is an example of accessing the associated scene
-			// To test, create the function toggleSomething in your scene to activate/deactivate something
 			((LightingScene *) scene)->robot->rotateLeft();
 			break;
 		}
 	case 'i':
 		{
-			// This is an example of accessing the associated scene
-			// To test, create the function toggleSomething in your scene to activate/deactivate something
 			((LightingScene *) scene)->robot->moveForward();
 			break;
 		}
 
 	case 'k':
 		{
-			// This is an example of accessing the associated scene
-			// To test, create the function toggleSomething in your scene to activate/deactivate something
 			((LightingScene *) scene)->robot->moveBackward();
 			break;
 		}
@@ -91,8 +76,6 @@ void TPinterface::initGUI()
 
 void TPinterface::processGUI(GLUI_Control *ctrl)
 {
-	//printf ("GUI control id: %d\n  ",ctrl->user_id);
-	//string robot_texture;
 	switch (ctrl->user_id)
 	{
 	case CLOCK_UPDATE:
@@ -115,7 +98,6 @@ void TPinterface::processGUI(GLUI_Control *ctrl)
 		break;
 	case ROBOT_TEXTURE:
 		((LightingScene*) scene)->robot->switchTexture(var_textures);
-	//	std::cout<<"var_textures: "<<var_textures<<endl;
 		break;
 	};
 

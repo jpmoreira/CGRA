@@ -22,7 +22,7 @@
 float amb[3]={0.2,0.2,0.2};
 float dif[3]={0.6,0.6,0.6};
 float spec[3]={0.3,0.3,0.3};
-float shininess=20.0f;
+float shininess=40.0f;
 
 
 float myClock::hoursToAngle(float hour){
@@ -49,9 +49,6 @@ myClock::myClock():clockBody(new myCylinder(1,12)),hour_hand(new myClockHand(HOU
 
 		CGFappearance *topApp=new CGFappearance(amb, dif, spec, shininess);
 		CGFappearance *sideApp=new CGFappearance(amb, dif, spec, shininess);
-		myClockHand *hour_hand= new myClockHand();
-		myClockHand *min_hand= new myClockHand();
-		myClockHand *sec_hand= new myClockHand();
 		topApp->setTexture(PATH_CLOCK_TEXTURE);
 		clockBody->setTextures(topApp, sideApp);
 		clockBody->enableClamp(0, 0);
@@ -65,26 +62,19 @@ void myClock::draw(){
 
 	glPushMatrix();
 	drawHands();
-	glScaled(1,-1, 0.1);
+	glScaled(1, 1, 0.1);
 	glRotated(90, 1, 0, 0);
 	this->clockBody->draw(1);
 	glPopMatrix();
 }
 
 void myClock::drawHands(){
-
 	glPushMatrix();
+	glTranslated(0, 0, 0.1);
 	this->hour_hand->draw();
-	glPopMatrix();
-
-	glPushMatrix();
 	this->min_hand->draw();
-	glPopMatrix();
-
-	glPushMatrix();
 	this->sec_hand->draw();
 	glPopMatrix();
-
 }
 
 void myClock::update( unsigned long milisec){
@@ -103,8 +93,7 @@ void myClock::update( unsigned long milisec){
 
 		degrees = this->hour_hand->getAngle();
 		this->hour_hand->setAngle(degrees + DEGREES_PER_MIN*tmp/60.0);
-
-
 	}
+
 	this->time = milisec;
 }

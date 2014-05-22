@@ -9,10 +9,12 @@
 #define TRIANGLE_HEIGHT_PERCENT 0.3
 #define SQUARE_WIDTH_PERCENT 0.7
 
+
 class myClockHand: public CGFobject {
 	float angle;
 	float square_height, height;
 	float half_width, square_half_width;	
+	CGFappearance *material;
 
 public:
 	void setAngle(float degrees);
