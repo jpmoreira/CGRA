@@ -10,100 +10,190 @@
 #include "coordinateSystems.h"
 
 
-mySemiSphere::mySemiSphere(int stackNr,int slicesNr):slices(slicesNr),stacks(stackNr){
+mySemiSphere::mySemiSphere(int stackNr,int slicesNr):
+    slices(slicesNr),
+    stacks(stackNr),
+    xx(new double * [stackNr]),
+    yy(new double * [stackNr]),
+    zz(new double * [stackNr])
+{
+    for (int i=0; i<stackNr; i++) {//initialize arrays
+        xx[i]=new double[slicesNr];
+        yy[i]=new double[slicesNr];
+        zz[i]=new double[slicesNr];
+    }
+    
+    this->populateArrays();
+    
+    
 }
 
 void mySemiSphere::draw(bool bothSides){
     
     
+        drawTop();
+
     
-    glBegin(GL_QUADS);
-    
-    for (int i=0; i<stacks; i++) {//dont draw last one since las one should be composed of triangles
-        this->drawRing(i,false);
-        if (bothSides) this->drawRing(i,true);
+    for (int i=0; i<stacks-1; i++) {
+        drawRing(i);
     }
     
-    glEnd();
+    if(bothSides){
+        drawTop_inverted();
+        
+        for (int i=0; i<stacks-1; i++) {
+            drawRing_inverted(i);
+        }
+    
+    }
     
     
     
 }
 
 
-void mySemiSphere::drawRing(int stackNr,bool inverted){
+
+
+void mySemiSphere::drawTop(){
     
-    //TODO: Implement it
+    glBegin(GL_TRIANGLE_FAN);
     
-    SphericalPoint pt1;
-    SphericalPoint pt2;
-    SphericalPoint pt3;
-    SphericalPoint pt4;
+    glNormal3d(0, 1.0, 0);
+    glVertex3d(0, 1.0, 0);
     
-    CartesianPoint _pt1;
-    CartesianPoint _pt2;
-    CartesianPoint _pt3;
-    CartesianPoint _pt4;
+    for (int i=slices-1; i>=0; i--) {
+        glNormal3d(xx[stacks-1][i], yy[stacks-1][i], zz[stacks-1][i]);
+                glVertex3d(xx[stacks-1][i], yy[stacks-1][i], zz[stacks-1][i]);
+    }
     
-    pt1.r=1.0;
-    pt2.r=1.0;
-    pt3.r=1.0;
-    pt4.r=1.0;
+    glNormal3d(xx[stacks-1][slices-1], yy[stacks-1][slices-1], zz[stacks-1][slices-1]);
+    glVertex3d(xx[stacks-1][slices-1], yy[stacks-1][slices-1], zz[stacks-1][slices-1]);
     
+    glEnd();
+
+}
+
+
+void mySemiSphere::drawTop_inverted(){
     
+    glBegin(GL_TRIANGLE_FAN);
     
-    pt1.phy=90-90.0/stacks*(stackNr+1);
-    pt4.phy=90-90.0/stacks*(stackNr+1);
-    pt2.phy=90-90.0/stacks*stackNr;
-    pt3.phy=90-90.0/stacks*stackNr;
-    
-    
-    
+    glNormal3d(0, -1.0, 0);
+    glVertex3d(0, 1.0, 0);
     
     for (int i=0; i<slices; i++) {
-        
-        pt1.rho=-180./slices+360./slices*i;
-        pt2.rho=-180./slices+360./slices*i;
-        pt3.rho=180./slices+360./slices*i;
-        pt4.rho=180./slices+360./slices*i;
+        glNormal3d(-xx[stacks-1][i], -yy[stacks-1][i], -zz[stacks-1][i]);
+        glVertex3d(xx[stacks-1][i], yy[stacks-1][i], zz[stacks-1][i]);
+    }
+    
+    glNormal3d(-xx[stacks-1][0], -yy[stacks-1][0], -zz[stacks-1][0]);
+    glVertex3d(xx[stacks-1][0], yy[stacks-1][0], zz[stacks-1][0]);
+    
+    glEnd();
+    
+}
 
-        _pt1=sphericalToCartesian(&pt1);
-        _pt2=sphericalToCartesian(&pt2);
-        _pt3=sphericalToCartesian(&pt3);
-        _pt4=sphericalToCartesian(&pt4);
+
+void mySemiSphere::drawRing(int stackNr){
+    
+    
+    glBegin(GL_TRIANGLE_STRIP);
+    
+        glNormal3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    glVertex3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    
+    glNormal3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    glVertex3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    
+    for (int i=1; i<slices; i++) {
+        
+        glNormal3d(xx[stackNr][i], yy[stackNr][i], zz[stackNr][i]);
+        glVertex3d(xx[stackNr][i], yy[stackNr][i], zz[stackNr][i]);
         
         
-        if (inverted) {
-            glNormal3d(-1*_pt1.x,-1*_pt1.y, -1*_pt1.z);
-            glVertex3d(_pt1.x, _pt1.y, _pt1.z);
-            
-            glNormal3d(-1*_pt2.x, -1*_pt2.y, -1*_pt2.z);
-            glVertex3d(_pt2.x, _pt2.y, _pt2.z);
-            
-            glNormal3d(-1*_pt3.x, -1*_pt3.y, -1*_pt3.z);
-            glVertex3d(_pt3.x, _pt3.y, _pt3.z);
-            
-            glNormal3d(-1*_pt4.x,-1*_pt4.y,-1*_pt4.z);
-            glVertex3d(_pt4.x, _pt4.y, _pt4.z);
-        }
-        else{
-            glNormal3d(_pt1.x, _pt1.y, _pt1.z);
-            glVertex3d(_pt1.x, _pt1.y, _pt1.z);
-            
-            glNormal3d(_pt2.x, _pt2.y, _pt2.z);
-            glVertex3d(_pt2.x, _pt2.y, _pt2.z);
-            
-            glNormal3d(_pt3.x, _pt3.y, _pt3.z);
-            glVertex3d(_pt3.x, _pt3.y, _pt3.z);
-            
-            glNormal3d(_pt4.x, _pt4.y, _pt4.z);
-            glVertex3d(_pt4.x, _pt4.y, _pt4.z);
-        }
+        glNormal3d(xx[stackNr+1][i], yy[stackNr+1][i], zz[stackNr+1][i]);
+        glVertex3d(xx[stackNr+1][i], yy[stackNr+1][i], zz[stackNr+1][i]);
+        
+        
+    }
+    
+    glNormal3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    glVertex3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    
+    glNormal3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    glVertex3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    
+    glEnd();
+}
+
+void mySemiSphere::drawRing_inverted(int stackNr){
+    
+    
+    glBegin(GL_TRIANGLE_STRIP);
+    
+    
+    
+    
+    glNormal3d(-xx[stackNr][0], -yy[stackNr][0], -zz[stackNr][0]);
+    glVertex3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    
+    glNormal3d(-xx[stackNr+1][0], -yy[stackNr+1][0], -zz[stackNr+1][0]);
+    glVertex3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    
+    
+    for (int i=slices-1; i>0; i--) {
+        
+        glNormal3d(-xx[stackNr][i], -yy[stackNr][i], -zz[stackNr][i]);
+        glVertex3d(xx[stackNr][i], yy[stackNr][i], zz[stackNr][i]);
+        
+        glNormal3d(-xx[stackNr+1][i], -yy[stackNr+1][i], -zz[stackNr+1][i]);
+        glVertex3d(xx[stackNr+1][i], yy[stackNr+1][i], zz[stackNr+1][i]);
         
         
         
         
         
     }
+    
+    glNormal3d(-xx[stackNr][0], -yy[stackNr][0], -zz[stackNr][0]);
+    glVertex3d(xx[stackNr][0], yy[stackNr][0], zz[stackNr][0]);
+    
+    glNormal3d(-xx[stackNr+1][0], -yy[stackNr+1][0], -zz[stackNr+1][0]);
+    glVertex3d(xx[stackNr+1][0], yy[stackNr+1][0], zz[stackNr+1][0]);
+    
+    
+    
+
+    
+    
+    
+    glEnd();
+}
+
+
+void mySemiSphere::populateArrays(){
+    
+    for (int i=0; i<stacks; i++) {
+        this->populateArrays(i);
+    }
+
+}
+void mySemiSphere::populateArrays(int stackNr){
+
+    SphericalPoint pt;
+    CartesianPoint cart_pt;
+    pt.r=1.0;//all points have 0.5 radius
+    pt.rho=0;
+    pt.phy=90*(1-stackNr/(double)stacks);
+    for (int i=0; i<slices; i++) {
+        pt.rho-=360/(double)slices;
+        cart_pt=sphericalToCartesian(&pt);
+        xx[stackNr][i]=cart_pt.x;
+        yy[stackNr][i]=cart_pt.y;
+        zz[stackNr][i]=cart_pt.z;
+        
+        
+    }
+    
     
 }

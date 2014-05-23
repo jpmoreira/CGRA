@@ -64,6 +64,9 @@ void LightingScene::update(unsigned long milisec){
 void LightingScene::init()
 {
 
+   
+    sphere=new mySemiSphere(3,10);
+    
 	sceneVar=0;
 	enable_light1=0;
 	enable_light2=0;
@@ -155,7 +158,7 @@ void LightingScene::init()
     cil=new myCylinder(2,12);
     cil->setTextures(cilinderApp, cilinderApp);
     cil->enableRepeat(4, 12);
-    sphere=new mySemiSphere(10,10);
+    
     cube=new myUnitCube();
     clock=new myClock();
     robot=new myRobot(100);*/
@@ -168,7 +171,7 @@ void LightingScene::init()
 	cil=new myCylinder(2,12);
 	cil->setTextures(cilinderApp, cilinderApp);
 	cil->enableRepeat(4, 12);
-	sphere=new mySemiSphere(10,10);
+	//sphere=new mySemiSphere(10,10);
 	cube=new myUnitCube();
 	clock=new myClock();
 	robot=new myRobot(100);
@@ -232,7 +235,7 @@ void LightingScene::display()
 	    glRotated(-90.0,0,0,1);
 	    glScaled(17,0.2,10);
 	    material_wallLeft->apply();
-	    wallLeft->draw();
+	    //wallLeft->draw();
 	    glPopMatrix();
 	//    
 	//    //PlaneWall
@@ -284,8 +287,11 @@ void LightingScene::display()
     glPushMatrix();
     glTranslated(0, 4, 7.5);
     glScaled(1, 8, 15);
-    holeWall->draw();
+    //holeWall->draw();
     glPopMatrix();
+    
+    
+    sphere->draw(true);
 	// ---- END Primitive drawing section
 
 

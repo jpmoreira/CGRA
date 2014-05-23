@@ -15,7 +15,16 @@
 #endif /* defined(__CGRA_1__mySemySphere__) */
 class mySemiSphere: public CGFobject {
     int stacks,slices;
-    void drawRing(int stackNr,bool inverted);
+    double** xx;
+    double** yy;
+    double** zz;
+    void drawRing(int stackNr);
+    
+    void drawRing_inverted(int stackNr);
+    void drawTop();
+    void drawTop_inverted();
+    void populateArrays();
+    void populateArrays(int stackNr);
 public:
     void draw(bool bothSides);
     mySemiSphere(int stacksNr,int slicesNr);
