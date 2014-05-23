@@ -194,6 +194,13 @@ myRobot::myRobot(int stackNr):
 	wireFrameMode(false),
 	xz_rotate_degree(0)
 {
+<<<<<<< HEAD
+    
+    //std::cout<<myRobot::nameForTexture(1);
+    robotAppearance->setTexture(myRobot::nameForTexture(textureNr));
+    populateArrays();
+=======
+>>>>>>> ae879c4e920e0ece490cb59103c3605c290f3291
 
 	std::cout<<myRobot::nameForTexture(1);
 	robotAppearance->setTexture(myRobot::nameForTexture(1));

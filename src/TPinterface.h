@@ -13,7 +13,7 @@ class TPinterface: public CGFinterface {
 
 		virtual void processKeyboard(unsigned char key, int x, int y);
 
-		int testVar;
+		int var_textures;
 };
 
 
