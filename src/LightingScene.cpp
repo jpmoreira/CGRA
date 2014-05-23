@@ -205,25 +205,25 @@ void LightingScene::display()
 	//   
 	//// ---- BEGIN Primitive drawing section
 
-	//    //First Table
-	//    glPushMatrix();
-	//    glTranslated(5,0,8);
-	//    table->draw();
-	//    glPopMatrix();
-	//    
-	//    //Second Table
-	//    glPushMatrix();
-	//    glTranslated(12,0,8);
-	//    table->draw();
-	//    glPopMatrix();
-	//    
-	//    //Floor
-	//    glPushMatrix();
-	//    glTranslated(7.5,0,7.5);
-	//    glScaled(15,0.2,15);
-	//    material_floor->apply();
-	//    wallFront->draw();
-	//    glPopMatrix();
+	    //First Table
+	    glPushMatrix();
+	    glTranslated(5,0,8);
+	    table->draw();
+	    glPopMatrix();
+	    
+	    //Second Table
+	    glPushMatrix();
+	    glTranslated(12,0,8);
+	    table->draw();
+	    glPopMatrix();
+	    
+	    //Floor
+	    glPushMatrix();
+	    glTranslated(7.5,0,7.5);
+	    glScaled(15,0.2,15);
+	    material_floor->apply();
+	    wallFront->draw();
+	    glPopMatrix();
 	//    
 	    //LeftWall
 	    glPushMatrix();
@@ -235,40 +235,40 @@ void LightingScene::display()
 	    wallLeft->draw();
 	    glPopMatrix();
 	//    
-	//    //PlaneWall
-	//    glPushMatrix();
-	//    glTranslated(7.5,4,0);
-	//    glRotated(90.0,1,0,0);
-	//    glScaled(15,0.2,8);
-	//   material_wallFront->apply();
-	//    wallFront->draw();
-	//    glPopMatrix();
-	//    
-	//    
-	//    // Board A
-	//    glPushMatrix();
-	//    glTranslated(4,4,0.2);
-	//    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
-	//    glRotated(90.0,1,0,0);
-	//    materialA->apply();
-	//    boardA->draw();
-	//    glPopMatrix();
-	//    
-	//    //PlaneB
-	//    glPushMatrix();
-	//    glTranslated(10.5,4,0.2);
-	//    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
-	//    glRotated(90.0,1,0,0);
-	//    materialB->apply();
-	//    boardB->draw();
-	//    glPopMatrix();
-	//    
-	//   glPushMatrix();
-	//   glTranslated(14, 4, 14);
-	//   glScaled(1.5, 8, 1.5);
-	//   cil->draw(1);
-	//   
-	//   glPopMatrix();
+	    //PlaneWall
+	    glPushMatrix();
+	    glTranslated(7.5,4,0);
+	    glRotated(90.0,1,0,0);
+	    glScaled(15,0.2,8);
+	   material_wallFront->apply();
+	    wallFront->draw();
+	    glPopMatrix();
+	    
+	    
+	    // Board A
+	    glPushMatrix();
+	    glTranslated(4,4,0.2);
+	    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
+	    glRotated(90.0,1,0,0);
+	    materialA->apply();
+	    boardA->draw();
+	    glPopMatrix();
+	    
+	    //PlaneB
+	    glPushMatrix();
+	    glTranslated(10.5,4,0.2);
+	    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
+	    glRotated(90.0,1,0,0);
+	    materialB->apply();
+	    boardB->draw();
+	    glPopMatrix();
+	    
+	   glPushMatrix();
+	   glTranslated(14, 4, 14);
+	   glScaled(1.5, 8, 1.5);
+	   cil->draw(1);
+	   
+	   glPopMatrix();
 	//   
 	glPushMatrix();
 	glTranslated(0.5, 5, 3);
@@ -279,7 +279,7 @@ void LightingScene::display()
 
 	//
 	glPushMatrix();
-	//robot->draw();
+	robot->draw();
 	glPopMatrix();
     glPushMatrix();
     glTranslated(0, 4, 7.5);
