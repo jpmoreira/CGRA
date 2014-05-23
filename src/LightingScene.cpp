@@ -235,7 +235,7 @@ void LightingScene::display()
 	    glRotated(-90.0,0,0,1);
 	    glScaled(17,0.2,10);
 	    material_wallLeft->apply();
-	    //wallLeft->draw();
+	    wallLeft->draw();
 	    glPopMatrix();
 	//    
 	    //PlaneWall
@@ -287,11 +287,11 @@ void LightingScene::display()
     glPushMatrix();
     glTranslated(0, 4, 7.5);
     glScaled(1, 8, 15);
-    //holeWall->draw();
+    holeWall->draw();
     glPopMatrix();
     
     
-    sphere->draw(true);
+    //sphere->draw(true);
 	// ---- END Primitive drawing section
 
 
