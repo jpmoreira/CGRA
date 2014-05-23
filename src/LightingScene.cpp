@@ -158,19 +158,19 @@ void LightingScene::init()
     sphere=new mySemiSphere(10,10);
     cube=new myUnitCube();
     clock=new myClock();
-    robot=new myRobot(100);*/
+    robot=new myRobot(100);
 	
 
 
-	cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
-	cilinderApp->setTexture(PATH_WALL_TEXTURE);
+	//cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
+	//cilinderApp->setTexture(PATH_WALL_TEXTURE);
 
-	cil=new myCylinder(2,12);
-	cil->setTextures(cilinderApp, cilinderApp);
-	cil->enableRepeat(4, 12);
-	sphere=new mySemiSphere(10,10);
-	cube=new myUnitCube();
-	clock=new myClock();
+	//cil=new myCylinder(2,12);
+	//cil->setTextures(cilinderApp, cilinderApp);
+	//cil->enableRepeat(4, 12);
+	//sphere=new mySemiSphere(10,10);
+	//cube=new myUnitCube();
+	//clock=new myClock();
 	robot=new myRobot(100);
     holeWall=new myHoleWall(10);
 
