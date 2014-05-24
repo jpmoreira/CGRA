@@ -200,7 +200,9 @@ myRobot::myRobot(int stackNr):
 	robotAppearance2->setTexture(myRobot::nameForTexture(2));
 	robotAppearance3->setTexture(myRobot::nameForTexture(3));
 	populateArrays();
-	translate_coords[0] = translate_coords[1]= translate_coords[2]= 0;
+	translate_coords[0] = 8.5;
+	translate_coords[1]= 0;
+	translate_coords[2]= 8;
 }
 
 #pragma mark - Helper Methods

@@ -14,11 +14,11 @@ float deg2rad=pi/180.0;
 
 
 // Positions for two lights
-float light0_pos[4] = {4, 6.0, 1.0, 1.0};
-float light1_pos[4] = {10.5, 6.0, 1.0, 1.0};
+float light0_pos[4] = {3.25, 8.0, 3.25, 1.0};
+float light1_pos[4] = {9.75, 8.0, 3.25, 1.0};
 
-float light2_pos[4] = {-10.5, 6.0, 5.0, 1.0};
-float light3_pos[4] = {4, 6.0, 5.0, 1.0};
+float light2_pos[4] = {3.25, 8.0, 9.75, 1.0};
+float light3_pos[4] = {9.75, 8.0, 9.75, 1.0};
 
 // Global ambient light (do not confuse with ambient component of individual lights)
 float globalAmbientLight[4]= {0,0,0,1};
@@ -64,9 +64,9 @@ void LightingScene::update(unsigned long milisec){
 void LightingScene::init()
 {
 
-   
-    sphere=new mySemiSphere(3,10);
-    
+
+	sphere=new mySemiSphere(3,10);
+
 	sceneVar=0;
 	enable_light1=0;
 	enable_light2=0;
@@ -86,13 +86,15 @@ void LightingScene::init()
 
 	// Declares and enables two lights, with null ambient component
 
-	light0 = new CGFlight(GL_LIGHT0, light0_pos);
+	//light0 = new CGFlight(GL_LIGHT0, light0_pos);
+	light0 = new myLamp(10,10,GL_LIGHT0, light0_pos);
 	light0->setAmbient(ambientNull);
 	//light0->setSpecular(yellow);
 
 	light0->disable();
 
-	light1 = new CGFlight(GL_LIGHT1, light1_pos);
+	//light1 = new CGFlight(GL_LIGHT1, light1_pos);
+	light1 = new myLamp(10,10,GL_LIGHT1, light1_pos);
 	light1->setAmbient(ambientNull);
 
 	light1->disable();
@@ -101,7 +103,8 @@ void LightingScene::init()
 	light1->setKq(0);
 
 
-	light2 = new CGFlight(GL_LIGHT2, light2_pos);
+	//light2 = new CGFlight(GL_LIGHT2, light2_pos);
+	light2 = new myLamp(10,10,GL_LIGHT2, light2_pos);
 	light2->setAmbient(ambientNull);
 
 	light2->disable();
@@ -150,19 +153,19 @@ void LightingScene::init()
 	material_wallLeft->setTexture(PATH_LANDSCAPE_TEXTURE);
 	material_wallLeft->setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 
-    
-    
-    cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
-    cilinderApp->setTexture(PATH_WALL_TEXTURE);
-    
-    cil=new myCylinder(2,12);
-    cil->setTextures(cilinderApp, cilinderApp);
-    cil->enableRepeat(4, 12);
-    
-    cube=new myUnitCube();
-    clock=new myClock();
-    robot=new myRobot(100);
-	
+
+
+	cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
+	cilinderApp->setTexture(PATH_WALL_TEXTURE);
+
+	cil=new myCylinder(2,12);
+	cil->setTextures(cilinderApp, cilinderApp);
+	cil->enableRepeat(4, 12);
+
+	cube=new myUnitCube();
+	clock=new myClock();
+	robot=new myRobot(100);
+
 
 
 	//cilinderApp=new CGFappearance(amb_wall,dif_wall,spec_wall,shininess_wall);
@@ -175,7 +178,7 @@ void LightingScene::init()
 	//cube=new myUnitCube();
 	//clock=new myClock();
 	robot=new myRobot(100);
-    holeWall=new myHoleWall(10);
+	holeWall=new myHoleWall(10);
 
 
 	setUpdatePeriod(100);    
@@ -205,74 +208,86 @@ void LightingScene::display()
 	axis.draw();
 	//  
 	//// ---- END Background, camera and axis setup
-	//   
-	//// ---- BEGIN Primitive drawing section
 
-	    //First Table
-	    glPushMatrix();
-	    glTranslated(5,0,8);
-	    table->draw();
-	    glPopMatrix();
-	    
-	    //Second Table
-	    glPushMatrix();
-	    glTranslated(12,0,8);
-	    table->draw();
-	    glPopMatrix();
-	    
-	    //Floor
-	    glPushMatrix();
-	    glTranslated(7.5,0,7.5);
-	    glScaled(15,0.2,15);
-	    material_floor->apply();
-	    wallFront->draw();
-	    glPopMatrix();
-	//    
-	    //LeftWall
-	    glPushMatrix();
-	    glTranslated(-10,5,8.5);
-	   glRotated(90.0, 1, 0, 0);
-	    glRotated(-90.0,0,0,1);
-	    glScaled(17,0.2,10);
-	    material_wallLeft->apply();
-	    wallLeft->draw();
-	    glPopMatrix();
-	//    
-	    //PlaneWall
-	    glPushMatrix();
-	    glTranslated(7.5,4,0);
-	    glRotated(90.0,1,0,0);
-	    glScaled(15,0.2,8);
-	   material_wallFront->apply();
-	    wallFront->draw();
-	    glPopMatrix();
-	    
-	    
-	    // Board A
-	    glPushMatrix();
-	    glTranslated(4,4,0.2);
-	    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
-	    glRotated(90.0,1,0,0);
-	    materialA->apply();
-	    boardA->draw();
-	    glPopMatrix();
-	    
-	    //PlaneB
-	    glPushMatrix();
-	    glTranslated(10.5,4,0.2);
-	    glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
-	    glRotated(90.0,1,0,0);
-	    materialB->apply();
-	    boardB->draw();
-	    glPopMatrix();
-	    
-	   glPushMatrix();
-	   glTranslated(14, 4, 14);
-	   glScaled(1.5, 8, 1.5);
-	   cil->draw(1);
-	   
-	   glPopMatrix();
-	//   
+
+
+	//First Table
+	glPushMatrix();
+	glTranslated(5,0,8);
+	table->draw();
+	glPopMatrix();
+
+
+	//Second Table
+	glPushMatrix();
+	glTranslated(12,0,8);
+	table->draw();
+	glPopMatrix();
+
+
+	//Floor
+	glPushMatrix();
+	glTranslated(7.5,0,7.5);
+	glScaled(15,0.2,15);
+	material_floor->apply();
+	wallFront->draw();
+	glPopMatrix();
+	
+
+	//LeftWall
+	glPushMatrix();
+	glTranslated(-10,5,8.5);
+	glRotated(90.0, 1, 0, 0);
+	glRotated(-90.0,0,0,1);
+	glScaled(17,0.2,10);
+	material_wallLeft->apply();
+	wallLeft->draw();
+	glPopMatrix();
+	
+
+	//PlaneWall
+	glPushMatrix();
+	glTranslated(7.5,4,0);
+	glRotated(90.0,1,0,0);
+	glScaled(15,0.2,8);
+	material_wallFront->apply();
+	wallFront->draw();
+	glPopMatrix();
+
+
+	// Board A
+	glPushMatrix();
+	glTranslated(4,4,0.2);
+	glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
+	glRotated(90.0,1,0,0);
+	materialA->apply();
+	boardA->draw();
+	glPopMatrix();
+
+	//PlaneB
+	glPushMatrix();
+	glTranslated(10.5,4,0.2);
+	glScaled(BOARD_WIDTH,BOARD_HEIGHT,1);
+	glRotated(90.0,1,0,0);
+	materialB->apply();
+	boardB->draw();
+	glPopMatrix();
+
+	//cylinder1
+	glPushMatrix();
+	glTranslated(12, 4, 12);
+	glScaled(1.5, 8, 1.5);
+	cil->draw(1);  
+	glPopMatrix();
+
+	//cylinder2
+	glPushMatrix();
+	glTranslated(2, 4, 12);
+	glScaled(1.5, 8, 1.5);
+	cil->draw(1);
+	glPopMatrix();
+
+	//clock   
 	glPushMatrix();
 	glTranslated(0.5, 5, 3);
 	glRotated(90, 0, 1, 0);
@@ -280,18 +295,20 @@ void LightingScene::display()
 	glPopMatrix();
 
 
-	//
+	//robot
 	glPushMatrix();
 	robot->draw();
 	glPopMatrix();
-    glPushMatrix();
-    glTranslated(0, 4, 7.5);
-    glScaled(1, 8, 15);
-    holeWall->draw();
-    glPopMatrix();
-    
-    
-    //sphere->draw(true);
+
+	//holeInWall
+	glPushMatrix();
+	glTranslated(0, 4, 7.5);
+	glScaled(1, 8, 15);
+	holeWall->draw();
+	glPopMatrix();
+
+
+	//sphere->draw(true);
 	// ---- END Primitive drawing section
 
 
