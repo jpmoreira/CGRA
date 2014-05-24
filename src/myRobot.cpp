@@ -190,9 +190,8 @@ myRobot::myRobot(int stackNr):
 	robotAppearance(new CGFappearance(robot_amb,robot_diff,robot_spec,robot_shininess)),
 	robotAppearance2(new CGFappearance(robot_amb,robot_diff,robot_spec,robot_shininess)),
 	robotAppearance3(new CGFappearance(robot_amb,robot_diff,robot_spec,robot_shininess)),
-	//textureNr(1),
 	wireFrameMode(false),
-	xz_rotate_degree(0)
+	xz_rotate_degree(220)
 {
 
 	std::cout<<myRobot::nameForTexture(1);
