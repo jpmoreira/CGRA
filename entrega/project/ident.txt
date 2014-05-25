@@ -1,3 +1,7 @@
 Turma 6 Grupo 13
 ei12167 - Daniel Mendonça
 ei12002 - José Moreira
+
+Texturas encontram-se inclusas na pasta e devem ser colocadas na mesma directoria do executável.
+
+Alguns dos ficheiros de código tem implementações de alíneas seguintes uma vez que a implementação não seguiu sempre a seqüência indicada por causa da distribuição de tarefas feitas.
